@@ -1,19 +1,24 @@
-<p id="notice"><%= notice %></p>
+
 
 <h1>Listing Comments</h1>
 
 <table>
   <thead>
     <tr>
-      <th>Text</th>
+      <th>Comments</th>
+      <th>Date</th>
+      <th>delete?</th>
       <th colspan="3"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @comments.each do |comment| %>
+
       <tr>
-        <td><%= comment.text %></td>
+          <td><%= comment.text %></td>
+          <td>  <%= comment.created_at %> </td>
+          <td> <%= link_to 'DELETE' ,[@project, comment], method: :delete%> </td>
       </tr>
     <% end %>
   </tbody>

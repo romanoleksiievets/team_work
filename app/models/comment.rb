@@ -1,4 +1,4 @@
 class Comment < ActiveRecord::Base
   belongs_to :project
-  validates :text, presence: true
+  validates_presence_of :text
 end
