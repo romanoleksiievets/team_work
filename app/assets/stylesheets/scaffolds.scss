@@ -4,9 +4,15 @@ body {
   font-family: verdana, arial, helvetica, sans-serif;
   font-size: 13px;
   line-height: 18px;
-  margin: 36px;
+  margin-top: 2%;
+  margin-left: 2%;
 }
-
+input {
+  min-width: 20em;
+}
+textarea {
+  min-width: 20em;
+}
 p, ol, ul, td {
   font-family: verdana, arial, helvetica, sans-serif;
   font-size: 13px;
@@ -19,14 +25,16 @@ pre {
   font-size: 11px;
 }
 
-td{
+td:first-child{
   padding: 7px;
-  max-width: 60em;
+  max-width: 25em;
+  word-wrap: break-word;
 
 }
 
 
 a {
+  margin-left: 10px;
   color: #154;
   text-decoration: none;
 
