@@ -58,6 +58,15 @@ div {
   color: green;
 }
 
+#alert {
+  // border: solid 2px red;
+  color: red;
+}
+
+#error {
+  color: red;
+}
+
 .field_with_errors {
   padding: 2px;
   background-color: red;

@@ -1,13 +1,7 @@
 class CommentsController < ApplicationController
   before_action :set_comment, only: [:show, :destroy]
 
-  # GET /comments
   def index
-    @comments = Comment.order(sort_column + " " + sort_direction)
-  end
-
-  # GET /comments/1
-  def show
   end
 
   # GET /comments/new
@@ -22,7 +16,8 @@ class CommentsController < ApplicationController
     if @comment.save
       redirect_to @project, notice: 'Comment was successfully created.'
     else
-      redirect_to @project, notice: '!!! ERROR  !!! ----->Not created fill the form <--------'
+      flash[:alert] = '!!! ERROR  !!! ----->Not created fill the form <--------'
+      redirect_to @project
     end
   end
 
