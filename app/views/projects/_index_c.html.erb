@@ -18,8 +18,8 @@
 
       <tr>
           <td><%= comment.text %></td>
-          <td>  <%= comment.created_at %> </td>
-          <td> <%= link_to 'DELETE' ,[@project, comment], method: :delete%> </td>
+          <td>  <%= comment.created_at.strftime("%d-%m-%Y   %H:%M") %> </td>
++       <td> <%= link_to '      Delete' ,[@project, comment], method: :delete, data: { confirm: 'Are you sure?' } %> </td>
       </tr>
     <% end %>
   </tbody>
