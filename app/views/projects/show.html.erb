@@ -1,5 +1,4 @@
 <p id="notice"><%= notice %></p>
-
 <p>
   <strong>Title:</strong>
   <%= @project.title %>
@@ -15,14 +14,15 @@
   <%= @project.city %>
 </p>
 
-<%= link_to 'Edit', edit_project_path(@project) %> |
+<%= link_to 'Edit', edit_project_path(@project) %>
 <%= link_to 'Back', projects_path %>
 
 </br>
 </br>
-<%= render "comments/index" %>
 
-</br>
-</br>
-CREATE COMMENT
-<%= render "comments/form" %>
+<h1>Create Comment</h1>
+<%= render "form_c" %>
+
+<%= render "index_c" %>
+
+

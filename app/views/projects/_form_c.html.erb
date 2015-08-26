@@ -11,9 +11,14 @@
     </div>
   <% end %>
   <div class="field">
-    <%= f.text_area :text %>
+   <%=  f.text_area :text%>
   </div>
+
   <div class="actions">
+  <% unless :text.nil? %>
     <%= f.submit %>
+    <% else %>
+ <% redirect_to @project%>
+ <% end %>
   </div>
 <% end %>

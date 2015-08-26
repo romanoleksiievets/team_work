@@ -4,8 +4,15 @@ body {
   font-family: verdana, arial, helvetica, sans-serif;
   font-size: 13px;
   line-height: 18px;
+  margin-top: 2%;
+  margin-left: 2%;
 }
-
+input {
+  min-width: 20em;
+}
+textarea {
+  min-width: 20em;
+}
 p, ol, ul, td {
   font-family: verdana, arial, helvetica, sans-serif;
   font-size: 13px;
@@ -18,16 +25,26 @@ pre {
   font-size: 11px;
 }
 
+td:first-child{
+  padding: 7px;
+  max-width: 25em;
+  word-wrap: break-word;
+
+}
+
+
 a {
-  color: #000;
+  margin-left: 10px;
+  color: #154;
+  text-decoration: none;
 
   &:visited {
-    color: #666;
+    color: #53b;
   }
 
   &:hover {
     color: #fff;
-    background-color: #000;
+    background-color: #abc;
   }
 }
 
