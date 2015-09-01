@@ -1,6 +1,5 @@
 class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :update, :destroy]
-
   # GET /projects
   def index
     @projects = Project.all
@@ -24,7 +23,7 @@ class ProjectsController < ApplicationController
   # POST /projects
   def create
     @project = Project.new(project_params)
-
+    @project.user = current_user
     respond_to do |format|
       if @project.save
         format.html { redirect_to projects_url, notice: 'Project was successfully created.' }
