@@ -1,5 +1,5 @@
 class AddDetailsToProjects < ActiveRecord::Migration
   def change
-    add_column :projects, :user_id, :string
+    add_reference :projects, :owner, index: true
   end
 end

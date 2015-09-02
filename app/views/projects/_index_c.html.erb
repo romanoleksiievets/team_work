@@ -5,6 +5,7 @@
 <table>
   <thead>
     <tr>
+      <th>User</th>
       <th>Comments</th>
       <th>Date</th>
       <th></th>
@@ -16,9 +17,12 @@
 
     <% @comments.each do |comment| %>
       <tr>
+          <td><%= comment.owner.try(:name) %></td>
           <td><%= comment.text %></td>
           <td>  <%= comment.created_at.strftime("%d-%m-%Y   %H:%M") %> </td>
-          <td> <%= link_to 'Delete' ,[@project, comment], method: :delete, data: { confirm: 'Are you sure?' } %> </td>
+          <% if comment.owner == current_user %>
+            <td> <%= link_to 'Delete' ,[@project, comment], method: :delete, data: { confirm: 'Are you sure?' } %> </td>
+          <% end %>
       </tr>
     <% end %>
   </tbody>

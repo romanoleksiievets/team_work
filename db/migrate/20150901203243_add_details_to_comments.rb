@@ -1,5 +1,5 @@
 class AddDetailsToComments < ActiveRecord::Migration
   def change
-    add_column :comments, :user_id, :string
+    add_reference :comments, :owner, index: true
   end
 end

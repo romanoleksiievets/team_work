@@ -17,8 +17,10 @@
         <td><%= link_to project.title, project %></td>
         <td><%=  project.text %></td>
         <td><%=  project.city %></td>
-        <td ><%= link_to 'Edit', edit_project_path(project) %></td>
-        <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if project.owner == current_user %>
+          <td ><%= link_to 'Edit', edit_project_path(project) %></td>
+          <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
