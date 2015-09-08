@@ -1,10 +1,23 @@
 Rails.application.routes.draw do
-  devise_for :users
-  get 'welcome/index'
+  devise_for :users, :path_names => { :sign_up => "register" , :sign_in => "login" }
+
+  #scope :module => "user" do
+  #resources :projects, :comments
+  #end
 
   resources :projects do
     resources :comments, only:[:new, :create, :destroy]
+  member do
+    #collection do
+    get 'add'  ## /projects/add    ##  /projects_add_url   ## or use     get '/add' => "add#projects"
+    get 'del'
   end
+  #member do
+  #  get 'add'   /project/1/add     project_add_path   params[:id]
+  #end
+  end
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

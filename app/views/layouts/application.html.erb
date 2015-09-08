@@ -7,7 +7,7 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
+<header>
  <% if flash[:notice] %>
     <div id="notice"><%= flash[:notice] %></div>
   <% end %>
@@ -17,15 +17,15 @@
   <% if flash[:alert] %>
     <div id="alert"><%= flash[:alert] %></div>
    <% end %>
-
   <% if current_user %>
-    <%= link_to("Profile", edit_user_registration_path) %>
+   Logged in as <%= link_to(current_user.email, edit_user_registration_path) %> |
     <%= link_to("Sign Out", destroy_user_session_path, method: :delete) %>
   <% else %>
     <%= link_to("Sign In", new_user_session_path) %>
   <% end %>
-
+</header>
+<tbody>
   <%= yield %>
-
+</tbody>
 </body>
 </html>
