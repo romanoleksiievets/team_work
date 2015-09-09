@@ -9,12 +9,9 @@ Rails.application.routes.draw do
     resources :comments, only:[:new, :create, :destroy]
   member do
     #collection do
-    get 'add'  ## /projects/add    ##  /projects_add_url   ## or use     get '/add' => "add#projects"
-    get 'del'
+    post 'add'
+    delete 'del'
   end
-  #member do
-  #  get 'add'   /project/1/add     project_add_path   params[:id]
-  #end
   end
 
 
