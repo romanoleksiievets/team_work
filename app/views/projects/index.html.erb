@@ -11,17 +11,27 @@
   </thead>
 
   <tbody>
-    <% @projects.each do |project| %>
-        <tr>
+  <%# Project.find_by_owner_id( current_user.id).id %>
 
+<% @array_of_projects_ids =  User.find(current_user.id).project_ids%>
+
+    <%@projects.each do |pro|%>
+    <% if pro.owner_id == current_user.id%>
+    <% @array_of_projects_ids << pro.id %>
+    <%end%>
+    <%end%>
+
+    <% @projects.where(id: @array_of_projects_ids ).each do |project| %>
+         <tr>
         <td><%= link_to project.title, project %></td>
-        <td><%=  project.text %></td>
+        <td><%=  urls_to_links(project.text)  %></td>
         <td><%=  project.city %></td>
-        <% if project.owner == current_user %>
+        <% if  project.owner ==   current_user %>
           <td ><%= link_to 'Edit', edit_project_path(project) %></td>
           <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <% end %>
-      </tr>
+        </tr>
+
     <% end %>
   </tbody>
 </table>
@@ -29,3 +39,5 @@
 <br>
 
 <%= link_to 'New Project', new_project_path %>
+<br><br>
+<%= link_to 'Back', root_path %>

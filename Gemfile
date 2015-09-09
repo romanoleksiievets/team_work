@@ -46,7 +46,7 @@ group :development, :test do
   gem 'shoulda-matchers'
   gem 'factory_girl_rails'
   gem 'faker'
-  gem 'capybara'
+  gem 'capybara', '2.5.0'
   gem 'capybara-webkit'
   gem 'capybara-screenshot'
   gem 'database_cleaner'

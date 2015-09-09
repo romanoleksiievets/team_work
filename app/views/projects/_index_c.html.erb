@@ -20,7 +20,7 @@
           <td><%= comment.owner.try(:name) %></td>
           <td><%= comment.text %></td>
           <td>  <%= comment.created_at.strftime("%d-%m-%Y   %H:%M") %> </td>
-          <% if comment.owner == current_user %>
+               <% if comment.owner == current_user  or  @project.owner ==   current_user %>
             <td> <%= link_to 'Delete' ,[@project, comment], method: :delete, data: { confirm: 'Are you sure?' } %> </td>
           <% end %>
       </tr>

@@ -1,29 +1,82 @@
-<p>
-  <strong>Title:</strong>
-  <%= @project.title %>
-</p>
+<div id="left"><p>
 
-<p>
-  <strong>Text:</strong>
-  <%= @project.text %>
-</p>
+        <span style="color: green" >  Owner:  </span>
+        <%= @project.owner.name%>
+        <br><br>
 
-<p>
-  <strong>City:</strong>
-  <%= @project.city %>
-</p>
+                  <strong>Title:</strong>
+                  <%= @project.title %>
+                </p>
+                <p>
+                  <strong>City:</strong>
+                  <%= @project.city %>
+                </p>
 
-<% if @project.owner == current_user %>
-  <%= link_to 'Edit', edit_project_path(@project) %>
+                <p>
+                  <strong>Text:</strong>
+                  <%=urls_to_links(urls_to_images(@project.text))%>
+                </p>
+
+        <% if @project.owner == current_user %>
+          <%= link_to 'Edit', edit_project_path(@project) %>
+        <% end %>
+        <%= link_to 'Back', projects_path %>
+        </br>
+        </br>
+
+        <h1>Create Comment</h1>
+        <%= render "projects/form_c" %>
+
+        <%= render "projects/index_c" %>
+
+</div>
+
+<div id="right">
+
+<% @project.user_ids.each do |k| %>
+<% k %>
+<% end%>
+<table>
+
+<span style="color: green" >  Users who added to current project:  </span>
+
+<tr>
+<% @project.user_ids.each do |k| %>
+        <% User.all.each do |u| %>
+                <% if u.id == k %>
+                <td><%= u.name%></td>
+                      <td>  <% if @project.owner == current_user  or @project.users.exists?( :user_id == current_user.id) %>
+                                            <%= link_to 'delete', del_project_path(:id_u => u.id) , data: { confirm: "Are you sure delete #{u.name}?" }%>
+                                  <% end%></td>
+                        </tr><br>
+                <% end%>
+        <% end%>
 <% end %>
-<%= link_to 'Back', projects_path %>
 
-</br>
-</br>
+</table>
+<br>
+        <% if @project.users.empty? %>
+                No added Users to current project<br>
+        <%end%>
 
-<h1>Create Comment</h1>
-<%= render "projects/form_c" %>
+<% @array_of_users_ids = User.all.collect{|h| h.id}%>
+<% @array_of_project_users_ids= @project.user_ids.collect  {|p|  p } %> <br>
+        <% @array_of_project_users_ids.collect do  |element| %>
+        <% @array_of_users_ids.delete(element) %>
+        <% end %>
+<% @array_of_users_ids.delete(current_user.id) %>
 
-<%= render "projects/index_c" %>
+<% if @project.owner == current_user  or @project.users.exists?( :user_id == current_user.id) %>
+        <%@col =  User.where(id: @array_of_users_ids ) %>
+        <% if @array_of_users_ids.empty? %>
+        <% else %>
+                <%= form_for( :id_k , method: :get , url: {action: "add"})  do |f| %>
+                  <%= f.select( "id", @col.collect {|p| [ p.name, p.id ]  }, include_blank: false) %>
+                  <%= f.submit value="Add to my project"%>
+                <% end %>
+        <% end %>
+<% end %>
 
 
+<br>
+</div>

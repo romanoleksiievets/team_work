@@ -12,7 +12,7 @@ class CommentsController < ApplicationController
 
   # POST /comments
   def create
-    @comment = @project.comments.build(comment_params) # Comment.new(project_id: 2)
+    @comment = @project.comments.build(comment_params)
     @comment.owner = current_user
     if @comment.save
       redirect_to @project, notice: 'Comment was successfully created.'
