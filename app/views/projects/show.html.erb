@@ -23,44 +23,24 @@
         <%= link_to 'Back', projects_path %>
         </br>
         </br>
+  <div id="comments">
 
-        <h1>Create Comment</h1>
-        <%= render "projects/form_c" %>
+          <%= render "projects/form_c" %>
 
-        <%= render "projects/index_c" %>
+          <%= render "projects/index_c" %>
+
+  </div>
 
 </div>
 
 
 
 <div id="right">
-  <table>
-    <span style="color: green" >  Users who added to current project:  </span>
+          <%= render "projects/add_users" %>
+</div>
 
-   <% if @project.users.exists? %>
-      <% @project.users.each do |user| %>
-        <tr>
-          <td><%= user.name%></td>
-          <td>
-            <% if @project.owner == current_user %>
-              <%= link_to 'delete', del_project_path(:id_u => user.id) , method: :delete, data: { confirm: "Are you sure delete #{user.name}?" }%>
-            <% end%>
-          </td>
-        </tr>
-      <% end%>
-    </table>
-    <br>
-  <% else %>
-      <br><br>No added Users to current project<br>
-  <%end%>
+<div id="righter">
 
-  <% if @project.owner == current_user && User.free_users(@project).present? %>
-    <%= form_for( :id_k, url: {action: "add"})  do |f| %>
-      <%= f.select("id", User.free_users(@project).collect {|p| [ p.name, p.id ]  }, include_blank: false) %>
-      <%= f.submit "Add to my project" %>
-    <% end %>
-  <% end %>
+          <%= render "projects/add_attachment" %>
 
-
-    <br>
 </div>

@@ -1,0 +1,36 @@
+<span style="color: darkviolet" >Add attachment to current project : </span>
+ <br>
+ <br>
+
+<table>
+  <tr>
+    <%= form_for([@project, @attachment]) do |f| %>
+      <td><%= f.file_field :attachment %></td>
+      <td><%= f.submit %></td>
+    <% end %>
+  </tr>
+</table>
+ <br>
+ <br>
+<span style="color: darkblue" > Added attachment : </span>
+
+ <br>
+
+<table>
+<% @attachments.each do |atch| %>
+  <tr>
+    <td><%= atch.owner.try(:name)  %></td>
+
+    <% if atch.attachment_content_type == "image/jpeg" || atch.attachment_content_type == "image/png" || atch.attachment_content_type == "image/gif" %>
+        <td><%= link_to image_tag(atch.attachment.url), atch.attachment.url(:original, false ) %></td>
+    <% else  %>
+        <td><%= link_to "#{atch.attachment_content_type}", atch.attachment.url(:original, false ) %></td>
+    <% end %>
+
+    <% if atch.owner == current_user  ||  @project.owner ==   current_user %>
+    <td><%= link_to 'Delete' ,[@project, atch], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <% end %>
+  </tr>
+<% end %>
+
+</table>
