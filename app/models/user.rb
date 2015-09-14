@@ -12,7 +12,6 @@ class User < ActiveRecord::Base
 
    scope :free_users, -> (project) { User.where.not(id: (project.user_ids + [project.owner.id])) }
 
-
  end
 
 

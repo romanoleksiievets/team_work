@@ -1,12 +1,12 @@
-<div id="left"><p>
-
-        <span style="color: green" >  Owner:  </span>
-        <%= @project.owner.name%>
-        <br><br>
-
+<div id="left">
+                <p>
+                  <span style="color: green" >  Owner:  </span>
+                  <%= @project.owner.name%>
+                    <br><br>
                   <strong>Title:</strong>
                   <%= @project.title %>
                 </p>
+
                 <p>
                   <strong>City:</strong>
                   <%= @project.city %>
@@ -24,23 +24,13 @@
         </br>
         </br>
   <div id="comments">
-
           <%= render "projects/form_c" %>
-
           <%= render "projects/index_c" %>
-
   </div>
-
 </div>
-
-
-
 <div id="right">
           <%= render "projects/add_users" %>
 </div>
-
 <div id="righter">
-
-          <%= render "projects/add_attachment" %>
-
+          <%= render "attachments/add_attachment_to_project" %>
 </div>

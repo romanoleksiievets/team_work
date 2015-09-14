@@ -20,11 +20,12 @@
 <% @attachments.each do |atch| %>
   <tr>
     <td><%= atch.owner.try(:name)  %></td>
+    <td style="width: 15em"><%= atch.attachment_file_name.gsub(/...\w$/,'')  %></td>
 
     <% if atch.attachment_content_type == "image/jpeg" || atch.attachment_content_type == "image/png" || atch.attachment_content_type == "image/gif" %>
-        <td><%= link_to image_tag(atch.attachment.url), atch.attachment.url(:original, false ) %></td>
+        <td><%= link_to image_tag(atch.attachment.url), download_project_attachment_path(@project, atch) %></td>
     <% else  %>
-        <td><%= link_to "#{atch.attachment_content_type}", atch.attachment.url(:original, false ) %></td>
+        <td><%= link_to "#{atch.attachment_content_type}", download_project_attachment_path(@project, atch) %></td>
     <% end %>
 
     <% if atch.owner == current_user  ||  @project.owner ==   current_user %>

@@ -2,11 +2,16 @@ Rails.application.routes.draw do
   devise_for :users, :path_names => { :sign_up => "register" , :sign_in => "login" }
   resources :projects do
     resources :comments, only:[:new, :create, :destroy]
-    resources :attachments, only:[:new, :create, :destroy]
+    resources :attachments, only:[:create, :destroy] do
+      member do
+        get 'download'
+      end
+    end
     member do
       post 'add'
       delete 'del'
     end
+   #match "attachments/:id" => "attachment#download", as: :download, via: [:get, :post]
   end
 
 
