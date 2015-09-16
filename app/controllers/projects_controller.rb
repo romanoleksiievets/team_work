@@ -1,6 +1,5 @@
 class ProjectsController < ApplicationController
   before_action :set_project, only: [:edit, :update, :destroy, :add, :del]
-
   # GET /projects
   def index
     @projects = Project.all
@@ -11,6 +10,8 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:id])
     @comments = @project.comments
     @comment = Comment.new
+    @attachment = Attachment.new
+    @attachments = @project.attachments
   end
 
   # GET /projects/new
