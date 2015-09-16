@@ -14,8 +14,8 @@ class AttachmentsController < ApplicationController
   end
 
   def destroy
-    @attachment.destroy
-    redirect_to @project , notice: 'Attachment was successfully destroyed.'
+    @attachment.destroy if current_user == @attachment.owner
+    redirect_to @project, notice: 'Attachment was successfully destroyed.'
   end
 
   def download
