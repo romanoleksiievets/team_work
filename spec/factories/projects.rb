@@ -1,8 +1,9 @@
 FactoryGirl.define do
   factory :project do
-    title "MyString"
-text "MyText"
-city "MyString"
+    association :owner, factory: :user
+    sequence(:title) { |n| "project#{n}" }
+    sequence(:text) { |n| "text#{n}" }
+    city "Lviv"
   end
 
 end
