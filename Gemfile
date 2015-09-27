@@ -21,9 +21,16 @@ gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
-gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'devise'
 gem "paperclip", "~> 4.3"
+gem 'autoprefixer-rails', '~> 6.0.3'
+gem 'bootstrap-sass'
+
+gem 'capybara', '2.5.0'
+gem 'capybara-webkit'
+
+gem 'sdoc', '~> 0.4.0', group: :doc
+
 
 group :development, :test do
   gem 'thin'
@@ -39,8 +46,6 @@ group :development, :test do
   gem 'shoulda-matchers'
   gem 'factory_girl_rails'
   gem 'faker'
-  gem 'capybara', '2.5.0'
-  gem 'capybara-webkit'
   gem 'capybara-screenshot'
   gem 'database_cleaner'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
