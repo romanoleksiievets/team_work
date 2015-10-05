@@ -85,3 +85,6 @@ pickle-email-*.html
 coverage
 
 /bower_components/
+
+.ruby-version
+.ruby-gemset
