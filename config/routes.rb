@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
-  devise_for :users, :path_names => { :sign_up => "register" , :sign_in => "login" }
+  devise_for :users, path_names: { sign_up: "register" , sign_in: "login" }
   resources :projects do
-    resources :comments, only:[:new, :create, :destroy]
-    resources :attachments, only:[:create, :destroy] do
+    resources :comments, only: [:new, :create, :destroy]
+    resources :attachments, only: [:create, :destroy] do
       member do
         get 'download'
       end
@@ -14,6 +14,9 @@ Rails.application.routes.draw do
    #match "attachments/:id" => "attachment#download", as: :download, via: [:get, :post]
   end
 
+  namespace :admin do
+    get '/' => 'dashboard#index'
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
