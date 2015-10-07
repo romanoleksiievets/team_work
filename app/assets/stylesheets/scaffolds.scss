@@ -1,0 +1,154 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+body {
+  background-color: #fff;
+  color: #333;
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size: 10px;
+  line-height: 1px;
+  margin-top: 2%;
+}
+header{
+}
+tbody{
+  margin-top: 30px;
+}
+img{
+  height: 35px;
+  width: 130px;
+}
+#left {
+  margin-top: 10px;
+  float: left;
+  width: 350px;
+}
+#right{
+  margin-top: 20px;
+  float: left;
+  width: 300px;
+  height: 300px;
+}
+#righter{
+  margin-top: 20px;
+}
+#comments{
+  margin-right: -300px;
+}
+input {
+  min-width: 15em;
+}
+textarea {
+  min-width: 15em;
+}
+p, ol, ul, td {
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size: 8px;
+  line-height: 13px;
+
+}
+
+pre {
+  background-color: #eee;
+  padding: 10px;
+  font-size: 9px;
+}
+
+td {
+  padding: 5px;
+  max-width: 300px;
+  word-wrap: break-word;
+
+}
+
+
+a {
+  margin-left: 10px;
+  color: #154;
+  text-decoration: none;
+
+  &:visited {
+    color: #53b;
+  }
+
+  &:hover {
+    color: #fff;
+    background-color: #abc;
+  }
+}
+
+div {
+  &.field, &.actions {
+    margin-bottom: 10px;
+  }
+}
+
+#notice {
+  color: green;
+}
+
+#alert {
+  // border: solid 2px red;
+  color: red;
+}
+
+#error {
+  color: red;
+}
+
+.field_with_errors {
+  padding: 2px;
+  background-color: red;
+  display: table;
+}
+
+#error_explanation {
+  width: 450px;
+  border: 2px solid red;
+  padding: 7px;
+  padding-bottom: 0;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+
+  h2 {
+    text-align: left;
+    font-weight: bold;
+    padding: 5px 5px 5px 15px;
+    font-size: 9px;
+    margin: -7px;
+    margin-bottom: 0px;
+    background-color: #c00;
+    color: #fff;
+  }
+
+  ul li {
+    font-size: 8px;
+    list-style: square;
+  }
+}
+
+/* universal */
+
+html {
+  overflow-y: scroll;
+}
+
+body {
+  padding-top: 10px;
+}
+
+section {
+  overflow: auto;
+}
+
+textarea {
+  resize: vertical;
+}
+
+.center {
+  text-align: center;
+}
+
+.center h1 {
+  margin-bottom: 10px;
+}
