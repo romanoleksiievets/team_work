@@ -6,27 +6,50 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
-<body>
+<body class="row" style="margin: 23px 0;">
+              <div class="col-xs-12" style="text-align:center;">
+                    <% if flash[:notice] %>
+                <div id="notice"><%= flash[:notice] %></div>
+                    <% end %>
+                    <% if flash[:error] %>
+                <div id="error"><%= flash[:error] %></div>
+                    <% end %>
+                    <% if flash[:alert] %>
+                <div id="alert"><%= flash[:alert] %></div>
+                    <% end %>
+            </div>
+<header class="col-xs-12">
+  <div class="col-xs-10 col-xs-offset-1" >
+      <div class=" col-xs-4">
+      <%page_class = "page_class_project" %>
+          <div class="col-xs-6 page_class_no <%if  current_page?(controller: 'projects') ;%>  <%=page_class%>    <% end %> ">
+          <%= link_to 'Projects', projects_path %>
+          </div>
+           <%if  current_page?("/projects/#{params[:id]}")%>
+                <div class="col-xs-6 page_class_title">
+                  <%= @project.title %>
+                </div>
+           <% end %>
+      </div>
+     <div class=" col-xs-12 col-sm-8" style="text-align: right;">
 
-<header>
- <% if flash[:notice] %>
-    <div id="notice"><%= flash[:notice] %></div>
-  <% end %>
-  <% if flash[:error] %>
-    <div id="error"><%= flash[:error] %></div>
-  <% end %>
-  <% if flash[:alert] %>
-    <div id="alert"><%= flash[:alert] %></div>
-   <% end %>
-  <% if current_user %>
-   Logged in as <%= link_to(current_user.email, edit_user_registration_path) %> |
-    <%= link_to("Sign Out", destroy_user_session_path, method: :delete) %>
-  <% else %>
-    <%= link_to("Sign In", new_user_session_path) %>
-  <% end %>
+        <% if current_user %>
+              Logged in as <%= link_to(current_user.email, edit_user_registration_path) %> |
+          <%= link_to("Sign Out", destroy_user_session_path, method: :delete) %>
+        <% else %>
+          <%= link_to("Sign In", new_user_session_path) %>
+        <% end %>
+    </div>
+  </div>
 </header>
-<tbody>
+
+<div class="tbody col-xs-10 col-xs-offset-1">
   <%= yield %>
-</tbody>
+</div>
+<footer class="col-xs-12">
+    <div class="center-block">
+      Site created  Team_Work , Disained Team_Work <%= Time.now.to_datetime.year %>
+    </div>
+</footer>
 </body>
 </html>

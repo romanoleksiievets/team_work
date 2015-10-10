@@ -1,4 +1,6 @@
-<div id="left">
+<div class="left col-xs-4">
+               <div>
+
                 <p>
                   <span style="color: green" >  Owner:  </span>
                   <%= @project.owner.name%>
@@ -17,20 +19,20 @@
                   <%=urls_to_links(urls_to_images(@project.text))%>
                 </p>
 
-        <% if @project.owner == current_user %>
-          <%= link_to 'Edit', edit_project_path(@project) %>
-        <% end %>
-        <%= link_to 'Back', projects_path %>
-        </br>
-        </br>
-  <div id="comments">
+                  <% if @project.owner == current_user %>
+                    <%= link_to 'Edit', edit_project_path(@project) %>
+                  <% end %>
+                  <%= link_to 'Back', projects_path %>
+             </div>
+
+  <div class="comments ">
           <%= render "projects/form_c" %>
           <%= render "projects/index_c" %>
   </div>
 </div>
-<div id="right">
+<div class="center col-xs-2">
           <%= render "projects/add_users" %>
 </div>
-<div id="righter">
+<div class="right col-xs-6">
           <%= render "attachments/add_attachment_to_project" %>
 </div>
