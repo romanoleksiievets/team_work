@@ -16,6 +16,12 @@ Rails.application.routes.draw do
 
   namespace :admin do
     get '/' => 'dashboard#index'
+     resources :pages do
+      collection  do
+        post :edit_multiple
+        put :update_multiple
+      end
+    end
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

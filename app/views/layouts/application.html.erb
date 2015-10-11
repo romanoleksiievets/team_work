@@ -22,12 +22,16 @@
   <div class="col-xs-10 col-xs-offset-1" >
       <div class=" col-xs-4">
       <%page_class = "page_class_project" %>
-          <div class="col-xs-6 page_class_no <%if  current_page?(controller: 'projects') ;%>  <%=page_class%>    <% end %> ">
+          <div class="col-xs-6 page_class_no <%if  current_page?('/projects')  ;%>  <%=page_class%>    <% end %> ">
           <%= link_to 'Projects', projects_path %>
           </div>
            <%if  current_page?("/projects/#{params[:id]}")%>
                 <div class="col-xs-6 page_class_title">
                   <%= @project.title %>
+                </div>
+                <% elsif current_page?("/projects")%>
+                <div class="col-xs-6 page_class_title">
+                  <%= link_to 'Admin Panel', admin_path %>
                 </div>
            <% end %>
       </div>
