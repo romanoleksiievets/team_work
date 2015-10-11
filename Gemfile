@@ -45,7 +45,7 @@ group :development, :test do
 end
 
 group :production do
-  gem 'unicorn', "~> 5.0.0.pre2"
+  gem 'unicorn'
 end
 
 group :development do
