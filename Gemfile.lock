@@ -139,7 +139,6 @@ GEM
       cocaine (~> 0.5.5)
       mime-types
       mimemagic (= 0.3.0)
-    pg (0.18.3)
     quiet_assets (1.1.0)
       railties (>= 3.1, < 5.0)
     rack (1.6.4)
@@ -227,7 +226,7 @@ GEM
     uglifier (2.7.2)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
-    unicorn (4.9.0)
+    unicorn (5.0.0.pre2)
       kgio (~> 2.6)
       rack
       raindrops (~> 0.7)
@@ -263,7 +262,6 @@ DEPENDENCIES
   meta_request
   mysql2 (~> 0.3.18)
   paperclip (~> 4.3)
-  pg (~> 0.18.2)
   quiet_assets
   rails (= 4.2.3)
   rspec-mocks
@@ -275,5 +273,8 @@ DEPENDENCIES
   thin
   turbolinks
   uglifier (>= 1.3.0)
-  unicorn
+  unicorn (~> 5.0.0.pre2)
   web-console (~> 2.0)
+
+BUNDLED WITH
+   1.10.6
