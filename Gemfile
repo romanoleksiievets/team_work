@@ -24,17 +24,17 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'devise'
-gem "paperclip", "~> 4.3"
+gem 'paperclip', '~> 4.3'
 gem 'unicorn'
 
 group :development, :test do
   gem 'thin'
   #Open sent emails in browser
-  gem "letter_opener"
+  gem 'letter_opener'
   # DIsable assets in logs
   gem 'quiet_assets'
-  gem "better_errors"
-  gem "binding_of_caller"
+  gem 'better_errors'
+  gem 'binding_of_caller'
   gem 'meta_request'
   gem 'rspec-rails'
   gem 'rspec-mocks'
