@@ -31,7 +31,6 @@ group :development, :test do
   gem 'rspec-mocks'
   gem 'shoulda-matchers'
   gem 'capybara', '2.5.0'
-  gem 'capybara-webkit'
   gem 'capybara-screenshot'
   gem 'factory_girl_rails'
   gem 'faker'
