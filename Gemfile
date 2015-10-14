@@ -57,9 +57,10 @@ group :development do
   gem "better_errors"
   gem "binding_of_caller"
   gem 'meta_request'
-  # gem 'capistrano',         require: false
-  # gem 'capistrano-rvm',     require: false
-  # gem 'capistrano-rails',   require: false
-  # gem 'capistrano-bundler', require: false
-  # gem 'capistrano3-puma',   require: false
+  gem 'capistrano',         require: false
+  gem 'capistrano-rails',   require: false
+  gem 'capistrano-bundler', require: false
+  gem 'capistrano-unicorn',     require: false
+  gem 'capistrano-rvm',     require: false
+  # gem 'rvm-capistrano',     require: false
 end
