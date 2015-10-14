@@ -10,6 +10,7 @@ set :repo_url, 'git@github.com:Lyubomyr/team_work.git'
 set :deploy_via, :remote_cache
 set :port, 22
 set :pty, true
+set :rvm1_ruby_version, "2.2.2"
 
 set :branch, ENV["REVISION"] || ENV["BRANCH"] || "master"
 
@@ -22,6 +23,8 @@ set :ssh_options, { forward_agent: true, auth_methods: %w(publickey), user: fetc
 # set :bundle_dir, "#{fetch(:gemset)}"
 # set :bundle_cmd, "#{fetch(:gemset)}/bin/bundle"
 
+before 'deploy', 'rvm1:alias:create'
+before 'deploy', 'rvm1:install:gems'
 after 'deploy:publishing', 'deploy:restart'
 after "deploy", "deploy:cleanup" # keep only the last 5 releases
 
