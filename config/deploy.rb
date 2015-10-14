@@ -19,8 +19,6 @@ set :linked_files, fetch(:linked_files, []).push('config/secret.yml')
 set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'public/system')
 set :ssh_options, { forward_agent: true, auth_methods: %w(publickey), user: fetch(:user) }
 
-before 'deploy', 'rvm1:alias:create'
-before 'deploy', 'rvm1:install:gems'
 after 'deploy:publishing', 'deploy:restart'
 after "deploy", "deploy:cleanup" # keep only the last 5 releases
 
