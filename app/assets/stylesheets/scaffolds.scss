@@ -1,43 +1,61 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
 body {
   background-color: #fff;
   color: #333;
-  font-family: verdana, arial, helvetica, sans-serif;
+  font-family: verdana, arial, helvetica, serif;
   font-size: 13px;
-  line-height: 18px;
-  margin-top: 2%;
-  margin-left: 2%;
+  line-height: 15px;
+  min-width: 1100px;
 }
 header{
+  padding: 6px;
 }
-tbody{
-  margin-top: 30px;
+footer{
+  padding: 6px;
+}
+.tbody{
+}
+.page_class_project{
+  margin:  -6px;
+  padding: 6px;
+  text-align: center;
+}
+.page_class_title{
+  margin:  -6px 6px;
+  padding: 6px;
+  text-align: center;
+}
+.page_class_no{
+  width: 67px;
+  margin:  -6px;
+  padding: 6px;
 }
 img{
   height: 35px;
-  width: 130px;
+  max-width: 130px;
 }
-#left {
-  margin-top: 10px;
-  float: left;
-  width: 350px;
-}
-#right{
-  margin-top: 20px;
-  float: left;
-  width: 300px;
-  height: 300px;
-}
-#righter{
+.left {
   margin-top: 20px;
 }
-#comments{
-  margin-right: -300px;
+.center{
+  margin-top: 20px;
+}
+.right{
+  margin-top: 20px;
+}
+.comments{
+}
+.center-block{
+  text-align: center;
 }
 input {
-  min-width: 15em;
+  max-width: 15em;
 }
 textarea {
-  min-width: 15em;
+  max-width: 15em;
+  background: #ffd;
 }
 p, ol, ul, td {
   font-family: verdana, arial, helvetica, sans-serif;
@@ -61,7 +79,6 @@ td {
 
 
 a {
-  margin-left: 10px;
   color: #154;
   text-decoration: none;
 
@@ -101,26 +118,15 @@ div {
 }
 
 #error_explanation {
-  width: 450px;
+  max-width: 450px;
   border: 2px solid red;
   padding: 7px;
   padding-bottom: 0;
   margin-bottom: 20px;
   background-color: #f0f0f0;
-
-  h2 {
-    text-align: left;
-    font-weight: bold;
-    padding: 5px 5px 5px 15px;
-    font-size: 12px;
-    margin: -7px;
-    margin-bottom: 0px;
-    background-color: #c00;
-    color: #fff;
-  }
+}
 
   ul li {
     font-size: 12px;
     list-style: square;
   }
-}
