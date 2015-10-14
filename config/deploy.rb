@@ -25,7 +25,7 @@ after "deploy", "deploy:cleanup" # keep only the last 5 releases
 
 namespace :deploy do
   task :restart do
-    invoke 'unicorn:reload'
+    invoke 'unicorn:restart'
   end
 end
 
