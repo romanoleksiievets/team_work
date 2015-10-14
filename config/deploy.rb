@@ -4,13 +4,11 @@ lock '3.4.0'
 server '178.62.217.79', roles: [:web, :app, :db], port: fetch(:port), user: fetch(:user), primary: true
 set :application, 'team_work'
 set :user, 'team_work'
-# set :gemset, /home/#{fetch(:user)}/.rvm/gems/ruby-2.2.2@#{fetch(:application)}
 set :scm, "git"
 set :repo_url, 'git@github.com:Lyubomyr/team_work.git'
 set :deploy_via, :remote_cache
 set :port, 22
 set :pty, true
-set :rvm1_ruby_version, "2.2.2"
 
 set :branch, ENV["REVISION"] || ENV["BRANCH"] || "master"
 
@@ -20,8 +18,6 @@ set :linked_files, fetch(:linked_files, []).push('config/database.yml')
 set :linked_files, fetch(:linked_files, []).push('config/secret.yml')
 set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'public/system')
 set :ssh_options, { forward_agent: true, auth_methods: %w(publickey), user: fetch(:user) }
-# set :bundle_dir, "#{fetch(:gemset)}"
-# set :bundle_cmd, "#{fetch(:gemset)}/bin/bundle"
 
 before 'deploy', 'rvm1:alias:create'
 before 'deploy', 'rvm1:install:gems'
