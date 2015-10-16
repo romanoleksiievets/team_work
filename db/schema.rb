@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151010190955) do
+ActiveRecord::Schema.define(version: 20151016063046) do
 
   create_table "attachments", force: :cascade do |t|
     t.string   "attachment_file_name",    limit: 255
@@ -31,6 +31,13 @@ ActiveRecord::Schema.define(version: 20151010190955) do
   end
 
   add_index "comments", ["owner_id"], name: "index_comments_on_owner_id", using: :btree
+
+  create_table "organizations", force: :cascade do |t|
+    t.string   "name",        limit: 255
+    t.text     "description", limit: 65535
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
 
   create_table "pages", force: :cascade do |t|
     t.string   "title",       limit: 255
