@@ -58,6 +58,6 @@ group :development do
   gem 'meta_request'
   gem 'capistrano',         require: false
   gem 'capistrano-rails',   require: false
-  gem 'capistrano3-unicorn',     require: false
   gem 'rvm1-capistrano3', require: false
+  gem 'capistrano3-unicorn', require: false
 end
