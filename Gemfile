@@ -31,7 +31,6 @@ group :development, :test do
   gem 'rspec-mocks'
   gem 'shoulda-matchers'
   gem 'capybara', '2.5.0'
-  gem 'capybara-webkit'
   gem 'capybara-screenshot'
   gem 'factory_girl_rails'
   gem 'faker'
@@ -57,9 +56,8 @@ group :development do
   gem "better_errors"
   gem "binding_of_caller"
   gem 'meta_request'
-  # gem 'capistrano',         require: false
-  # gem 'capistrano-rvm',     require: false
-  # gem 'capistrano-rails',   require: false
-  # gem 'capistrano-bundler', require: false
-  # gem 'capistrano3-puma',   require: false
+  gem 'capistrano',         require: false
+  gem 'capistrano-rails',   require: false
+  gem 'rvm1-capistrano3', require: false
+  gem 'capistrano3-unicorn', require: false
 end
