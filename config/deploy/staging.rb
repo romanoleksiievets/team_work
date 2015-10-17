@@ -1,12 +1,9 @@
-set :deploy_to, "/home/#{fetch(:user)}/app/#{fetch(:application)}"
-
-set :rails_env, :staging
-set :conditionally_migrate, true
-
-
-
-
-
+set :rvm_type, :user
+set :rvm_ruby_version, 'ruby-2.2.2@team_work'
+set :rails_env, 'staging'
+set :deploy_to, '/home/team_work/app/team_work'
+set :unicorn_config_path, "#{shared_path}/config/unicorn.rb"
+set :unicorn_pid, "#{shared_path}/pids/unicorn.pid"
 
 
 # server-based syntax
