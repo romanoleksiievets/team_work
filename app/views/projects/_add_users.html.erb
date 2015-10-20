@@ -1,7 +1,7 @@
 <span style="color: green" >  Users who added to current project:  </span>
 
    <% if @project.users.exists? %>
-  <table>
+  <table class="table table-hover">
       <% @project.users.each do |user| %>
         <tr>
           <td><%= user.name%></td>

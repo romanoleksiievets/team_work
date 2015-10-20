@@ -1,10 +1,10 @@
-<%= form_for [:admin, @page] do |f| %>
-  <% if @page.errors.any? %>
+<%= form_for [:admin, @new] do |f| %>
+  <% if @new.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@page.errors.count, "error") %> prohibited this page from being saved:</h2>
+      <h2><%= pluralize(@new.errors.count, "error") %> prohibited this newe from being saved:</h2>
 
       <ul>
-      <% @page.errors.full_messages.each do |message| %>
+      <% @new.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
@@ -14,14 +14,15 @@
     <%= f.label :title %><br>
     <%= f.text_field :title %>
   </div>
+   <div class="field">
+    <%= f.label :tag %><br>
+    <%= f.text_field :tag %>
+  </div>
   <div class="field">
     <%= f.label :body %><br>
     <%= f.text_area :body %>
   </div>
-  <div class="field">
-    <%= f.label :description %><br>
-    <%= f.text_field :description %>
-  </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>

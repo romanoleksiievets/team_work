@@ -1,5 +1,6 @@
 class  Admin::PagesController < ApplicationController
   before_action :set_page, only: [:show, :edit, :update, :destroy]
+  before_filter :if_admin?
 
   def index
     @admin = current_user

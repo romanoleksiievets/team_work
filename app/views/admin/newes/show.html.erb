@@ -1,0 +1,17 @@
+<p>
+  <strong>Title:</strong>
+  <%= @new.title %>
+</p>
+
+<p>
+  <strong>Tag:</strong>
+  <%= @new.tag %>
+</p>
+
+<p>
+  <strong>Body:</strong>
+  <%= @new.body %>
+</p>
+
+<%= link_to 'Edit', edit_admin_newe_path(@new) %> |
+<%= link_to 'Back', admin_newes_path %>

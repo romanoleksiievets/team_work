@@ -1,0 +1,11 @@
+<div class="col-xs-12">
+  <p>
+    Title: <strong><%= @new.title %></strong>
+    Tag:<%= link_to @new.tag %>
+  </p>
+  <article>
+    <%= @new.body %>
+  </article>
+</div>
+<br>
+<%= link_to 'Back', newes_path %>

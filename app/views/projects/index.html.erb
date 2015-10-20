@@ -1,7 +1,7 @@
 <div class="col-md-12">
 <h1 >Listing Projects</h1>
 
-<table>
+<table class="table table-hover">
   <thead>
     <tr>
       <th>Title</th>
@@ -31,7 +31,6 @@
           <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <% end %>
         </tr>
-
     <% end %>
   </tbody>
 </table>

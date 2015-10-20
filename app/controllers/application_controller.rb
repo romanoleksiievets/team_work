@@ -18,4 +18,12 @@ protected
     @current_organization ||= current_user.try(:organization)
   end
 
+private
+      def if_admin?
+      if current_user == User.find(1)
+      else
+        flash[:error] = 'You are not Admin'
+         redirect_to root_path
+       end
+    end
 end

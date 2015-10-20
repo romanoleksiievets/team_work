@@ -20,22 +20,25 @@
             </div>
 <header class="col-xs-12">
   <div class="col-xs-10 col-xs-offset-1" >
-      <div class=" col-xs-4">
-      <%page_class = "page_class_project" %>
-          <div class="col-xs-6 page_class_no <%if  current_page?('/projects')  ;%>  <%=page_class%>    <% end %> ">
+      <div class=" col-xs-6">
+       <%#page_class = "page_class_project" %>
+          <div class="col-xs-4 <%#if  current_page?('/projects')  ;%>  <%#=page_class%>    <%# end %> ">
           <%= link_to 'Projects', projects_path %>
           </div>
            <%if  current_page?("/projects/#{params[:id]}")%>
-                <div class="col-xs-6 page_class_title">
+                <div class="col-xs-4">
                   <%= @project.title %>
                 </div>
-                <% elsif current_page?("/projects")%>
-                <div class="col-xs-6 page_class_title">
+                <% elsif current_page?("/")%>
+                <div class="col-xs-4">
                   <%= link_to 'Admin Panel', admin_path %>
                 </div>
            <% end %>
+          <div class="col-xs-4">
+          <%= link_to 'News', newes_path %>
+          </div>
       </div>
-     <div class=" col-xs-12 col-sm-8" style="text-align: right;">
+     <div class=" col-xs-12 col-sm-6" style="text-align: right;">
 
         <% if current_user %>
               Logged in as <%= link_to(current_user.email, edit_user_registration_path) %> |

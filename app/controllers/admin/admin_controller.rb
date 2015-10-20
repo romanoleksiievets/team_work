@@ -1,4 +1,6 @@
 class Admin::AdminController < ApplicationController
+  before_filter :if_admin?
+
   def index
     @users = User.all
     @admin = User.new
@@ -9,4 +11,6 @@ class Admin::AdminController < ApplicationController
 
   def update_multiple
   end
+
+
 end

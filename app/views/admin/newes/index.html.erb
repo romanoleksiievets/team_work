@@ -1,0 +1,32 @@
+<h1>Listing news</h1>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Body</th>
+      <th>Tag</th>
+      <th></th>
+      <th>Created</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @news.each do |n| %>
+      <tr>
+        <td><%= link_to n.title , admin_newe_path(n) %></td>
+        <td><%= n.body.at(0..35)%><%= link_to "...", admin_newe_path(n) %></td>
+        <td><%= n.tag %></td>
+        <td><%= n.updated_at %></td>
+        <td><%= link_to 'Edit' , edit_admin_newe_path(n)%></td>
+        <td><%= link_to 'Destroy', admin_newe_path(n) ,method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New new' , new_admin_newe_path %><br>
+<%= link_to 'Back' , admin_path %>
