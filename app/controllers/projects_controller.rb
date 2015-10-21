@@ -29,7 +29,6 @@ class ProjectsController < ApplicationController
         render :new
       end
   end
-  end
 
   def update
       if @project.update(project_params)
@@ -37,7 +36,6 @@ class ProjectsController < ApplicationController
       else
          render :edit
       end
-    end
   end
 
   def destroy
