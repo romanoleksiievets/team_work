@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users, path_names: { sign_up: 'register' , sign_in: 'login' }, controllers: { registrations: 'registrations' }
 
-  resources :newes
+  resources :news
   resources :projects do
     resources :comments, only: [:new, :create, :destroy]
     resources :attachments, only: [:create, :destroy] do
@@ -19,8 +19,8 @@ Rails.application.routes.draw do
 
   namespace :admin do
     get '/' => 'dashboard#index'
-      resources :newes
-      resources :pages do
+    resources :news
+    resources :pages do
       collection  do
         post :edit_multiple
         put :update_multiple

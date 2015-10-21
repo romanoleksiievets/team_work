@@ -1,0 +1,17 @@
+<h1>Listing news</h1>
+<hr>
+
+    <% @news.each do |new| %>
+  <div>
+     <p>
+        <%= link_to new.title , news_path(new) %>
+     </p>
+     <article>
+        <%= new.body.at(0..300)%>
+        <%= link_to "... read more", news_path(new) %>
+     </article>
+       <p>Tag: <%= link_to new.tag %> Created : <%= new.updated_at %></p>
+  </div><hr>
+   <% end %>
+<br>
+<%= link_to 'Back' , root_path %>
