@@ -1,4 +1,4 @@
-class Admin::DashboardController <
+class Admin::DashboardController < Admin::AdminController
 
   def index
     @users = User.all
