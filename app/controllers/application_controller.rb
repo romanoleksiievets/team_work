@@ -19,11 +19,10 @@ protected
   end
 
 private
-      def if_admin?
-      if current_user == User.find(1)
-      else
-        flash[:error] = 'You are not Admin'
-         redirect_to root_path
-       end
+  def if_admin?
+    unless current_user == User.find(1)
+      flash[:error] = 'You are not Admin'
+      redirect_to root_path
     end
+  end
 end

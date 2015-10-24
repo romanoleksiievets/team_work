@@ -1,9 +1,7 @@
-class  Admin::PagesController < ApplicationController
+class  Admin::PagesController < Admin::AdminController
   before_action :set_page, only: [:show, :edit, :update, :destroy]
-  before_filter :if_admin?
 
   def index
-    @admin = current_user
     @pages = Page.all
   end
 

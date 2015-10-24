@@ -1,0 +1,22 @@
+<div class="col-xs-12" style="padding: 40px">
+  <div class="panel panel-default">
+    <div class="panel panel-heading">
+     <div>
+      Title: <strong> <%= @novelty.title %></strong>
+      <i style="padding-left:30px;">Tag:</i> <%= @novelty.tag %>
+        <span style="float: right;" >Category:
+          <span style="background-color: <%=@novelty_category.color unless @novelty_category.nil?%> ; padding: 5px; border-radius:5px;">
+           <%= @novelty_category.name unless @novelty_category.nil?%>
+           <%="none" if @novelty_category.nil?%>
+          </span>
+        </span>
+      </div>
+    </div>
+      <div class="panel panel-body">
+        <strong>Body:</strong><br>
+        <%= @novelty.body%>
+      </div>
+  <div class="panel-footer">
+    <%= link_to 'Back', novelties_path%>
+  </div>
+  </div>

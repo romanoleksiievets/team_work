@@ -16,6 +16,7 @@ footer{
   padding: 6px;
 }
 .tbody{
+  padding-top: 20px;
 }
 .page_class_project{
   margin:  -6px;
@@ -51,10 +52,10 @@ img{
   text-align: center;
 }
 input {
-  max-width: 15em;
+
 }
 textarea {
-  max-width: 15em;
+  max-width: 18em;
   background: #ffd;
 }
 p, ol, ul, td {
@@ -98,6 +99,15 @@ div {
   }
 }
 
+.event{
+  text-align: center;
+  background-color: none;
+  position: absolute;
+  padding: 5px;
+  top: 25px;
+  border-radius: 4px;
+  z-index: 2;
+}
 #notice {
   color: green;
 }
@@ -126,7 +136,18 @@ div {
   background-color: #f0f0f0;
 }
 
-  ul li {
+ul li {
     font-size: 12px;
     list-style: square;
-  }
+ }
+
+.purr {
+  position: fixed;
+  top: 30px;
+  right: 100px;
+  width: 250px;
+  padding: 20px;
+  background-color: #FCC;
+  border: solid 2px #C66;
+  &:first-letter { text-transform: uppercase; }
+}

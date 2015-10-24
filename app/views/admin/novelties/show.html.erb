@@ -1,0 +1,34 @@
+<div class="col-xs-8">
+  <div class="panel panel-default">
+    <div class="panel panel-heading">
+      <div>
+        Title:<strong><%= best_in_place [:admin, @novelty], :title %></strong>
+        <i style="padding-left:30px;">Tag:</i> <%= best_in_place [:admin, @novelty], :tag %>
+          <% if @novelty_category.nil? %>
+            <%color="white" %>
+          <% else %>
+            <%color=@novelty_category.color%>
+          <%end%>
+            <% array_of = NoveltyCategory.all.map  {|k| "#{k.id},#{k.name}".split(",")}%>
+        <span style="float: right;">Category:
+          <span style="background-color: <%=color %> ; padding: 5px; border-radius:5px;">
+           <%= best_in_place [:admin, @novelty], :novelty_category_id, :style => "padding-right: 5px;" , type: :select, collection: array_of%><%="none" if @novelty_category.nil?%>
+          </span>
+        </span>
+      </div>
+    </div>
+    <div class="panel panel-body">
+      <strong>Body:</strong><br>
+      <%= best_in_place [:admin, @novelty], :body, type: :textarea %>
+    </div>
+    <div class="panel-footer">
+      <%= link_to 'Back', admin_novelties_path %>
+    </div>
+  </div>
+</div>
+
+<div class="col-xs-4">
+  <%= render 'create_category' %>
+  <%= render 'show_category' %>
+</div>
+

@@ -16,9 +16,9 @@
 <% @array_of_projects_ids =  User.find(current_user.id).project_ids%>
 
     <%@projects.each do |pro|%>
-    <% if pro.owner_id == current_user.id%>
-    <% @array_of_projects_ids << pro.id %>
-    <%end%>
+      <% if pro.owner_id == current_user.id%>
+        <% @array_of_projects_ids << pro.id %>
+      <%end%>
     <%end%>
 
     <% @projects.where(id: @array_of_projects_ids ).each do |project| %>

@@ -1,0 +1,32 @@
+<h1>Listing novelties</h1>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Body</th>
+      <th>Tag</th>
+      <th>Category</th>
+      <th>Created</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @novelties.each do |novelty| %>
+      <tr>
+        <td><%= link_to novelty.title , admin_novelty_path(novelty) %></td>
+        <td><%= novelty.body.at(0..35)%><%= link_to "...", admin_novelty_path(novelty) %></td>
+        <td><%= novelty.tag %></td>
+        <td style="background-color: <%=novelty.novelty_category.color unless novelty.novelty_category.nil?%>"><%= novelty.novelty_category.name unless novelty.novelty_category.nil?%><%="none" if @novelty_category.nil?%></td>
+        <td><%= novelty.created_at.strftime("| %H:%M  | %d-%m-%Y |") %></td>
+        <td><%= link_to 'Destroy', admin_novelty_path(novelty) ,method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Novelty' , new_admin_novelty_path %><br>
+<%= link_to 'Back' , admin_path %>
