@@ -11,6 +11,7 @@ class ProjectsController < ApplicationController
     @comment = Comment.new
     @attachment = Attachment.new
     @attachments = @project.attachments
+    @array_of_users =  User.free_users(@project)
   end
 
   def new

@@ -17,10 +17,9 @@
   <% else %>
       <br>No added Users to current project<br><br>
   <%end%>
-
   <% if @project.owner == current_user && User.free_users(@project).present? %>
     <%= form_for( :id_k, url: {action: "add"})  do |f| %>
-      <%= f.select("id", User.free_users(@project).collect {|p| [ p.name, p.id ]  }, include_blank: false) %>
+      <%= f.select :id , @array_of_users, {},{ :class => "selectpicker" } %>
       <%= f.submit  "Add to my project" %>
     <% end %>
   <% end %>

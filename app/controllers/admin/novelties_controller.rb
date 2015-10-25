@@ -9,10 +9,14 @@ class  Admin::NoveltiesController < ApplicationController
     @novelty = Novelty.find(params[:id])
     @novelty_category_create = NoveltyCategory.new
     @novelty_categories = NoveltyCategory.all
+    @array_of_id_name = NoveltyCategory.get_id_name
   end
 
   def new
     @novelty = Novelty.new
+    @novelty_category_create = NoveltyCategory.new
+    @novelty_categories = NoveltyCategory.all
+    @array_of_name_id = NoveltyCategory.get_name_id
   end
 
 

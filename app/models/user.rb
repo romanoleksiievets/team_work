@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
   enum role: [:admin, :employee]
   enum status: [:active, :blocked, :invited]
 
-  scope :free_users, -> (project) { User.where.not(id: (project.user_ids + [project.owner.id])) }
+  scope :free_users, -> (project) { User.where.not(id: (project.user_ids + [project.owner.id])).collect {|p| [ p.name, p.id ]  } }
 
  end
 

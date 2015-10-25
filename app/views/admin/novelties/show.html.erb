@@ -9,10 +9,9 @@
           <% else %>
             <%color=@novelty_category.color%>
           <%end%>
-            <% array_of = NoveltyCategory.all.map  {|k| "#{k.id},#{k.name}".split(",")}%>
         <span style="float: right;">Category:
-          <span style="background-color: <%=color %> ; padding: 5px; border-radius:5px;">
-           <%= best_in_place [:admin, @novelty], :novelty_category_id, :style => "padding-right: 5px;" , type: :select, collection: array_of%><%="none" if @novelty_category.nil?%>
+          <span  class="form-group" style="background-color: <%=color %> ; padding: 5px; border-radius:5px;">
+           <%= best_in_place [:admin, @novelty], :novelty_category_id , type: :select, collection: @array_of_id_name , :data => { :inner_class => "selectpicker"} %><%="none" if @novelty_category.nil?%>
           </span>
         </span>
       </div>
@@ -31,4 +30,5 @@
   <%= render 'create_category' %>
   <%= render 'show_category' %>
 </div>
+
 
