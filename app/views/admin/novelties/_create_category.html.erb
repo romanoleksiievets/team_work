@@ -1,5 +1,5 @@
   <div class="panel panel-default">
-    <%= form_for [:admin, @novelty, @novelty_category_create] do |f| %>
+    <%= form_for [:admin, @novelty_category_create] do |f| %>
       <% if @novelty_category_create.errors.any? %>
         <div id="error_explanation" class="panel panel-heading">
           <h2><%= pluralize(@novelty_category_create.errors.count, "error") %> prohibited this novelty_category_create from being saved:</h2>
@@ -23,7 +23,7 @@
         </div>
       </div>
       <div class="panel-footer">
-        <%= f.submit "Create and Add Category to News"%>
+        <%= f.submit "Create NoveltiesCategory", :class => "btn btn-info"%>
       </div>
     <% end %>
   </div>

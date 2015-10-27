@@ -19,9 +19,8 @@ Rails.application.routes.draw do
 
   namespace :admin do
     get '/' => 'dashboard#index'
-    resources :novelties, only: [:new, :create, :update, :destroy, :show, :index] do
-      resources :novelty_categories, only: [:new, :create, :update, :destroy]
-    end
+    resources :novelties, only: [:new, :create, :update, :destroy, :show, :index]
+    resources :novelty_categories, :path => "novelties/new", only: [:new, :create, :update, :destroy]
     resources :pages
   end
 

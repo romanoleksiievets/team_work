@@ -3,12 +3,12 @@ class  Admin::NoveltiesController < ApplicationController
 
   def index
     @novelties = Novelty.all
+    @novelty_categories = NoveltyCategory.all
   end
 
   def show
     @novelty = Novelty.find(params[:id])
     @novelty_category_create = NoveltyCategory.new
-    @novelty_categories = NoveltyCategory.all
     @array_of_id_name = NoveltyCategory.get_id_name
   end
 
@@ -28,7 +28,8 @@ class  Admin::NoveltiesController < ApplicationController
       if @novelty.save
          redirect_to admin_novelties_path, notice: 'novelty was successfully created.'
       else
-         render :novelty
+         redirect_to new_admin_novelty_path
+         flash[:error] = ' ERROR fill the form'
       end
   end
 
@@ -37,6 +38,7 @@ class  Admin::NoveltiesController < ApplicationController
       if @novelty.update(novelty_params)
         # redirect_to admin_novelties_path, notice: 'novelty was successfully updated.'
         respond_with @novelty
+        flash[:notice] = ' ERROR fill the form'
       else
       render :edit
     end
@@ -51,6 +53,7 @@ class  Admin::NoveltiesController < ApplicationController
     def set_novelties
       @novelty = Novelty.find(params[:id])
       @novelty_category = @novelty.novelty_category
+     @novelty_categories = NoveltyCategory.all
     end
 
     def novelty_params

@@ -3,5 +3,5 @@ jQuery ->
 
   $('.selectpicker').selectpicker({
       style: 'btn-info',
-      size: 3
+      size: 5
   });
