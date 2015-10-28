@@ -4,17 +4,23 @@ class Admin::NoveltyCategoriesController < ApplicationController
   def create
     @novelty_category= NoveltyCategory.new(novelty_category_params)
       if @novelty_category.save
-         redirect_to new_admin_novelty_path, notice: 'Novelties_category was successfully created.'
+         # redirect_to new_admin_novelty_path, notice: 'Novelties_category was successfully created.'
+       @novelty_categories = NoveltyCategory.all
+       @select_options = @novelty_categories.map{|c| "<option value='#{c.id}'>#{c.name}</option>"}.join(" ")
+        respond_to do |format|
+          format.js { render "admin/novelties/create" }
+        end
       else
       flash[:alert] = 'Error fill the form'
       redirect_to new_admin_novelty_path
       end
   end
 
-respond_to :html, :json
   def update
       if @novelty_category.update(novelty_category_params)
-         respond_with @novelty_category
+        respond_to do |format|
+          format.json { render json: @novelty_category }
+        end
       else
        render :edit
       end
