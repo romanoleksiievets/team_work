@@ -17,7 +17,10 @@ Rails.application.routes.draw do
 
   namespace :admin do
     get '/' => 'dashboard#index'
-     resources :pages do
+    resources :users, except: [:new, :create, :show] do
+      post :send_invite, on: :collection
+    end
+    resources :pages do
       collection  do
         post :edit_multiple
         put :update_multiple

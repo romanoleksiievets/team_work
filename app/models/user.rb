@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   validates_presence_of :name
 
-  devise :database_authenticatable, :recoverable, :rememberable, :trackable, :validatable, :registerable
+  devise :invitable, :database_authenticatable, :recoverable, :rememberable, :trackable, :validatable, :registerable
 
   has_and_belongs_to_many :organizations
   has_and_belongs_to_many :projects
