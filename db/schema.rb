@@ -32,14 +32,6 @@ ActiveRecord::Schema.define(version: 20151024199044) do
 
   add_index "comments", ["owner_id"], name: "index_comments_on_owner_id", using: :btree
 
-  create_table "newes", force: :cascade do |t|
-    t.string   "title",      limit: 255
-    t.text     "body",       limit: 65535
-    t.string   "tag",        limit: 255
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
-  end
-
   create_table "novelties", force: :cascade do |t|
     t.string   "title",               limit: 255
     t.text     "body",                limit: 65535
