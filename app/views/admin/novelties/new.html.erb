@@ -1,13 +1,13 @@
 <h1>New novelties</h1>
 <div class="panel panel-default col-xs-8">
-
-<%= render 'form' %>
-<div class="panel panel-footer">
-
-<%= link_to 'Back', admin_novelties_path %>
-</div>
+  <%= render 'form' %>
+  <div class="panel panel-footer">
+    <%= link_to 'Back', admin_novelties_path %>
+  </div>
 </div>
 <div class="panel panel-default col-xs-4">
 <%= render 'create_category' %>
-<%= render 'show_category' %>
+  <div id="show_category">
+    <%= render 'show_category' %>
+  </div>
 </div>

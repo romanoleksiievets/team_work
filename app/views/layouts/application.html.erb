@@ -21,8 +21,7 @@
 <header class="col-xs-12">
   <div class="col-xs-10 col-xs-offset-1" >
       <div class=" col-xs-6">
-       <%#page_class = "page_class_project" %>
-          <div class="col-xs-4 <%#if  current_page?('/projects')  ;%>  <%#=page_class%>    <%# end %> ">
+          <div class="col-xs-4">
           <%= link_to 'Projects', projects_path %>
           </div>
            <%if  current_page?("/projects/#{params[:id]}")%>
@@ -35,7 +34,7 @@
                 </div>
            <% end %>
           <div class="col-xs-4">
-          <%= link_to 'Novelty', novelties_path %>
+          <%= link_to 'News', novelties_path %>
           </div>
       </div>
      <div class=" col-xs-12 col-sm-6" style="text-align: right;">
