@@ -5,7 +5,7 @@ class Admin::NoveltyCategoriesController < ApplicationController
     @novelty_category= NoveltyCategory.new(novelty_category_params)
      if @novelty_category.save
         @novelty_categories = NoveltyCategory.all
-        @select_options = @novelty_categories.map{|c| "<option value='#{c.id}'>#{c.name}</option>"}.join(" ")
+        @select_options = @novelty_categories.map{|c| "<option style='color:#{c.color}' value='#{c.id}'>#{c.name}</option>"}.join(" ")
         respond_to do |format|
           format.js { render "admin/novelties/create" }
         end

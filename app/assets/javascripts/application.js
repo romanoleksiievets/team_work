@@ -15,7 +15,6 @@
 //= require jquery.purr
 //= require best_in_place
 //= require turbolinks
-//= require bootstrap-select
 //= require bootstrap/alert
 //= require bootstrap/dropdown
 //= require_tree .
