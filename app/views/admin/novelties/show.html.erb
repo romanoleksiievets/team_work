@@ -1,17 +1,16 @@
 <div class="col-xs-8">
   <div class="panel panel-default">
     <div class="panel panel-heading">
-      <div>
-        Title:<strong><%= best_in_place [:admin, @novelty], :title %></strong>
+      <div>Title:<strong><%= best_in_place [:admin, @novelty], :title %></strong>
         <i style="padding-left:30px;">Tag:</i> <%= best_in_place [:admin, @novelty], :tag %>
           <% if @novelty_category.nil? %>
             <%color="white" %>
           <% else %>
             <%color=@novelty_category.color%>
           <%end%>
-        <span style="float: right;">Category:
-          <span  class="form-group" style="background-color: <%=color %> ; padding: 5px; border-radius:5px;">
-           <%= best_in_place [:admin, @novelty], :novelty_category_id , type: :select, collection: @array_of_id_name , :data => { :inner_class => "selectpicker"} %><%="none" if @novelty_category.nil?%>
+        <span style="float: right; min-width: 160px;">Category:
+          <span  style="background-color: <%=color %> ; padding: 6px 10px; border-radius:3px; ">
+           <%= best_in_place [:admin, @novelty], :novelty_category_id , type: :select, collection: @array_of_id_name , :class => "form-group" %><%="none" if @novelty_category.nil?%>
           </span>
         </span>
       </div>

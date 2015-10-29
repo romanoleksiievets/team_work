@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   devise_for :users, path_names: { sign_up: 'register' , sign_in: 'login' }, controllers: { registrations: 'registrations' }
 
   resources :novelties,:path => "/news", only: [:index, :show]
+  resources :pages, param: :title ,only: [:index, :show]
   resources :projects do
     resources :comments, only: [:new, :create, :destroy]
     resources :attachments, only: [:create, :destroy] do

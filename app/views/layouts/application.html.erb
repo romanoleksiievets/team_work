@@ -21,21 +21,27 @@
 <header class="col-xs-12">
   <div class="col-xs-10 col-xs-offset-1" >
       <div class=" col-xs-6">
-          <div class="col-xs-4">
-          <%= link_to 'Projects', projects_path %>
+          <div class="col-xs-8">
+            <ul class="nav nav-pills">
+              <li><%= link_to 'Projects', projects_path %></li>
+               <%if  current_page?("/projects/#{params[:id]}")%>
+                <li><%= @project.title %></li>
+              <% elsif current_page?("/")%>
+                <li><%= link_to 'Admin Panel', admin_path %></li>
+               <% end %>
+              <li><%= link_to 'News', novelties_path %></li>
+            </ul>
           </div>
-           <%if  current_page?("/projects/#{params[:id]}")%>
-                <div class="col-xs-4">
-                  <%= @project.title %>
-                </div>
-                <% elsif current_page?("/")%>
-                <div class="col-xs-4">
-                  <%= link_to 'Admin Panel', admin_path %>
-                </div>
-           <% end %>
-          <div class="col-xs-4">
-          <%= link_to 'News', novelties_path %>
+          <div class="col-xs-12">
+            <ul class="nav nav-tabs">
+
+            <%@pages = Page.all  %>
+            <% @pages.each do |page| %>
+              <li><%= link_to page.title , page_path(page.title) %></li>
+              <%end%>
+            </ul>
           </div>
+
       </div>
      <div class=" col-xs-12 col-sm-6" style="text-align: right;">
 

@@ -54,7 +54,6 @@ GEM
     bootstrap-sass (3.3.5.1)
       autoprefixer-rails (>= 5.0.0.1)
       sass (>= 3.3.0)
-    bootstrap-select-rails (1.6.3)
     builder (3.2.2)
     byebug (6.0.2)
     callsite (0.0.11)
@@ -272,7 +271,6 @@ DEPENDENCIES
   better_errors
   binding_of_caller
   bootstrap-sass (~> 3.3.5)
-  bootstrap-select-rails
   byebug
   capistrano
   capistrano-rails
