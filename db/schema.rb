@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151024199044) do
+ActiveRecord::Schema.define(version: 20151029230002) do
 
   create_table "attachments", force: :cascade do |t|
     t.string   "attachment_file_name",    limit: 255
@@ -71,6 +71,7 @@ ActiveRecord::Schema.define(version: 20151024199044) do
     t.string   "description", limit: 255
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
+    t.boolean  "if_show"
   end
 
   create_table "projects", force: :cascade do |t|
