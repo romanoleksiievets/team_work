@@ -1,0 +1,30 @@
+  <div class="panel panel-default">
+    <%= form_for [:admin, @novelty_category_create], remote: true do |f| %>
+      <% if @novelty_category_create.errors.any? %>
+        <div id="error_explanation" class="panel panel-heading">
+          <h2><%= pluralize(@novelty_category_create.errors.count, "error") %> prohibited this novelty_category_create from being saved:</h2>
+          <ul>
+          <% @novelty_category_create.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
+
+      <% end %>
+      <div class="panel panel-body">
+         <div class="input-group">
+           <span class="input-group-addon"><span class="glyphicon glyphicon-font"></span></span>
+           <%= f.text_field :name , class: "form-control" ,  placeholder: "Name"%>
+        </div>
+        <br>
+        <div class="input-group">
+          <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+          <%= f.text_field :color , class: "form-control" ,  placeholder: "Color"%>
+        </div>
+      </div>
+      <div class="panel-footer">
+        <%= f.submit "Create Category", :class => "btn btn-info"%>
+      </div>
+    <% end %>
+  </div>
+

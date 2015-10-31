@@ -1,7 +1,7 @@
 <div class="col-md-12">
 <h1 >Listing Projects</h1>
 
-<table>
+<table class="table table-hover">
   <thead>
     <tr>
       <th>Title</th>
@@ -16,9 +16,9 @@
 <% @array_of_projects_ids =  User.find(current_user.id).project_ids%>
 
     <%@projects.each do |pro|%>
-    <% if pro.owner_id == current_user.id%>
-    <% @array_of_projects_ids << pro.id %>
-    <%end%>
+      <% if pro.owner_id == current_user.id%>
+        <% @array_of_projects_ids << pro.id %>
+      <%end%>
     <%end%>
 
     <% @projects.where(id: @array_of_projects_ids ).each do |project| %>
@@ -31,7 +31,6 @@
           <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <% end %>
         </tr>
-
     <% end %>
   </tbody>
 </table>

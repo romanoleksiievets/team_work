@@ -1,0 +1,33 @@
+ <%= form_for  [:admin, @novelty] do |f| %>
+    <% if @novelty.errors.any? %>
+       <div id="error_explanation">
+          <h2><%= pluralize(@novelty.errors.count, "error") %> prohibited this novelty from being saved:</h2>
+
+          <ul>
+          <% @novelty.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
+     <% end %>
+     <div class="panel panel-body">
+       <div class="input-group">
+         <span class="input-group-addon"><span class="glyphicon glyphicon-font"></span></span>
+           <%= f.text_field :title , class: "form-control" ,  placeholder: "Title"%>
+       </div><br>
+       <div class="input-group">
+         <span class="input-group-addon"><span class="glyphicon glyphicon-tag"></span></span>
+           <%= f.text_field :tag , class: "form-control" ,  placeholder: "Tag"%>
+       </div><br>
+       <div class="input-group ch_width">
+         <span class="input-group-addon"><span class="glyphicon glyphicon glyphicon-tags"></span></span>
+           <%= f.select :novelty_category_id , @array_of_name_id , {},{ :class => "form-control"}%>
+       </div><br>
+       <div class="text-group">
+           <%= f.text_field :body , class: "form-control" ,  placeholder: "Body" , style: "min-height: 100px;"%>
+       </div>
+     </div>
+     <div class="panel-body">
+       <%= f.submit "Create", :class => "btn btn-info"%>
+       <% end %>
+     </div>

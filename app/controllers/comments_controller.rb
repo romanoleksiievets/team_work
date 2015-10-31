@@ -10,7 +10,7 @@ class CommentsController < ApplicationController
     if @comment.save
       redirect_to @project, notice: 'Comment was successfully created.'
     else
-      flash[:alert] = ' ERROR Not created fill the form'
+      flash[:alert] = ' ERROR fill the form'
       redirect_to @project
     end
   end

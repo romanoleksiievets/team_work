@@ -6,13 +6,17 @@
 </p>
 
 <p>
-  <strong>Body:</strong>
-  <%= @page.body %>
+  <strong>Description:</strong>
+  <%= @page.description %>
+</p>
+<p>
+  <strong>Show:</strong>
+  <%= @page.if_show %>
 </p>
 
 <p>
-  <strong>Description:</strong>
-  <%= @page.description %>
+  <strong>Body:</strong>
+  <%= @page.body %>
 </p>
 
 <%= link_to 'Edit', edit_admin_page_path(@page) %> |

@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   devise_for :users, path_names: { sign_up: 'register' , sign_in: 'login' }, controllers: { registrations: 'registrations' }
 
+  resources :novelties,:path => "/news", only: [:index, :show]
+  resources :pages, param: :title ,only: [:index, :show]
   resources :projects do
     resources :comments, only: [:new, :create, :destroy]
     resources :attachments, only: [:create, :destroy] do
@@ -12,17 +14,15 @@ Rails.application.routes.draw do
       post 'add'
       delete 'del'
     end
-   #match "attachments/:id" => "attachment#download", as: :download, via: [:get, :post]
+  # Example of attachments  download
+  #match "attachments/:id" => "attachment#download", as: :download, via: [:get, :post]
   end
 
   namespace :admin do
     get '/' => 'dashboard#index'
-     resources :pages do
-      collection  do
-        post :edit_multiple
-        put :update_multiple
-      end
-    end
+    resources :novelties,:path => "/news", only: [:new, :create, :update, :destroy, :show, :index]
+    resources :novelty_categories, only: [:new, :create, :update, :destroy]
+    resources :pages
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
