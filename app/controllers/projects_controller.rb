@@ -1,4 +1,6 @@
 class ProjectsController < ApplicationController
+  before_action :organization_admin_only, except: [:index, :show]
+  before_action :organization_member_only, only: [:index, :show]
   before_action :set_project, only: [:edit, :update, :destroy, :add, :del]
   # GET /projects
   def index

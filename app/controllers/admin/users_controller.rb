@@ -2,6 +2,7 @@ class Admin::UsersController < Admin::AdminController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   def index
+    pp request.subdomain
     @user = User.new
     @users = User.all
   end

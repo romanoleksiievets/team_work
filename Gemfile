@@ -26,6 +26,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'devise'
 gem 'devise_invitable'
 gem "paperclip", "~> 4.3"
+gem "ghost"
 
 group :development, :test do
   gem 'rspec-rails'

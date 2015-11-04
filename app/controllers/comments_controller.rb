@@ -1,4 +1,5 @@
 class CommentsController < ApplicationController
+  before_action :organization_member_only, only: [:index, :show]
   before_action :set_project
   before_action :set_comment, only: [ :destroy]
 

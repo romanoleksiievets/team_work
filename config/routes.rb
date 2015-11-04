@@ -1,38 +1,43 @@
 Rails.application.routes.draw do
-  devise_for :users, path_names: { sign_up: 'register' , sign_in: 'login' }, controllers: { registrations: 'registrations' }
+  constraints(Subdomain) do
+    devise_for :users, path_names: { sign_up: 'register' , sign_in: 'login' }, controllers: { registrations: 'registrations' }
 
-  resources :projects do
-    resources :comments, only: [:new, :create, :destroy]
-    resources :attachments, only: [:create, :destroy] do
+    resources :projects do
+      resources :comments, only: [:new, :create, :destroy]
+      resources :attachments, only: [:create, :destroy] do
+        member do
+          get 'download'
+        end
+      end
       member do
-        get 'download'
+        post 'add'
+        delete 'del'
+      end
+     #match "attachments/:id" => "attachment#download", as: :download, via: [:get, :post]
+    end
+
+    namespace :admin do
+      get '/' => 'dashboard#index'
+      resources :users, except: [:new, :create, :show] do
+        post :send_invite, on: :collection
+      end
+      resources :pages do
+        collection  do
+          post :edit_multiple
+          put :update_multiple
+        end
       end
     end
-    member do
-      post 'add'
-      delete 'del'
-    end
-   #match "attachments/:id" => "attachment#download", as: :download, via: [:get, :post]
+
+    root 'welcome#index'
+
   end
 
-  namespace :admin do
-    get '/' => 'dashboard#index'
-    resources :users, except: [:new, :create, :show] do
-      post :send_invite, on: :collection
-    end
-    resources :pages do
-      collection  do
-        post :edit_multiple
-        put :update_multiple
-      end
-    end
-  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'welcome#index'
   #root to: "projects#index"
 
   # Example of regular route:
