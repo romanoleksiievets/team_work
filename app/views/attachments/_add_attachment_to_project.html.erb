@@ -2,7 +2,7 @@
  <br>
  <br>
 
-<table>
+<table class="table table-hover">
   <tr>
     <%= form_for([@project, @attachment]) do |f| %>
       <td><%= f.file_field :attachment %></td>
@@ -16,7 +16,7 @@
 
  <br>
 
-<table>
+<table class="table table-hover">
 <% @attachments.each do |atch| %>
   <tr>
     <td><%= atch.owner.try(:name)  %></td>

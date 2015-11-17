@@ -2,7 +2,6 @@ class  Admin::PagesController < Admin::AdminController
   before_action :set_page, only: [:show, :edit, :update, :destroy]
 
   def index
-    @admin = current_user
     @pages = Page.all
   end
 
@@ -28,7 +27,7 @@ class  Admin::PagesController < Admin::AdminController
 
   def update
       if @page.update(page_params)
-         redirect_to admin_page_path(@page), notice: 'Page was successfully updated.'
+         redirect_to admin_pages_path, notice: 'Page was successfully updated.'
       else
        render :edit
       end
@@ -47,6 +46,6 @@ class  Admin::PagesController < Admin::AdminController
     end
 
     def page_params
-      params.require(:page).permit(:title, :body, :description)
+      params.require(:page).permit(:title, :body, :description, :if_show)
     end
 end

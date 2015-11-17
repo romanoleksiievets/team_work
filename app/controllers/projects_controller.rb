@@ -2,59 +2,48 @@ class ProjectsController < ApplicationController
   before_action :organization_admin_only, except: [:index, :show]
   before_action :organization_member_only, only: [:index, :show]
   before_action :set_project, only: [:edit, :update, :destroy, :add, :del]
-  # GET /projects
+
   def index
     @projects = Project.all
   end
 
-  # GET /projects/1
   def show
     @project = Project.find(params[:id])
     @comments = @project.comments
     @comment = Comment.new
     @attachment = Attachment.new
     @attachments = @project.attachments
+    @array_of_users =  User.free_users(@project)
   end
 
-  # GET /projects/new
   def new
     @project = Project.new
   end
 
-  # GET /projects/1/edit
   def edit
 
   end
 
-  # POST /projects
   def create
     @project = current_user.my_projects.build(project_params)
-       respond_to do |format|
       if @project.save
-        format.html { redirect_to projects_url, notice: 'Project was successfully created.' }
+        redirect_to projects_url, notice: 'Project was successfully created.'
       else
-        format.html { render :new }
+        render :new
       end
   end
-  end
 
-  # PATCH/PUT /projects/1
   def update
-    respond_to do |format|
       if @project.update(project_params)
-        format.html { redirect_to projects_url, notice: 'Project was successfully updated.' }
+         redirect_to projects_url, notice: 'Project was successfully updated.'
       else
-        format.html { render :edit }
+         render :edit
       end
-    end
   end
 
-  # DELETE /projects/1
   def destroy
     @project.destroy
-    respond_to do |format|
-      format.html { redirect_to projects_url, notice: 'Project was successfully destroyed.' }
-    end
+      redirect_to projects_url, notice: 'Project was successfully destroyed.'
   end
 
 def add
