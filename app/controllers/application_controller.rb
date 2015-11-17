@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   helper_method :current_organization
 
-  before_action :validate_subdomain, unless: :root?
+  before_action :validate_subdomain
   before_action :authenticate_user!#, except: [:index]
   before_action :configure_permitted_parameters, if: :devise_controller?
 
@@ -30,10 +30,9 @@ private
   end
 
   def validate_subdomain
-    # Domain.localhost?
-    pp "SUBDOMAIN = #{request.subdomain}"
+    subdomain_free_paths = %w(/ /users/login)
     @current_organization = Organization.find_by_subdomain(request.subdomain)
-    unless @current_organization.present?
+    unless subdomain_free_paths.include?(request.path) || @current_organization.present?
       flash[:alert] = "Organization #{request.subdomain} didn't find. Domain or subdomain is incorrect."
       redirect_to(root_path)
     end
