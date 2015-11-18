@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     resources :comments, only: [:new, :create, :destroy]
     resources :attachments, only: [:create, :destroy] do
       member do
+        get 'download'
         post 'add'
         delete 'del'
       end
