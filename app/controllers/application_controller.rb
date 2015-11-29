@@ -15,26 +15,34 @@ class ApplicationController < ActionController::Base
 protected
 
   def current_organization
-    @current_organization ||= Organization.find_by_subdomain(request.subdomain)
+    #TODO: need cache organizations list
+    @current_organization ||= Organization.find_by_subdomain(request.subdomain) || Organization.find_by_domain(request.domain)
   end
 
 private
 
-  def root?
-    request.path == "/"
+  def root?(type="/")
+    request.path == type
   end
 
   def localhost?
-    localhost = %w(127.0.0.0 localhost 0.0.0.0)
+    localhost = %w(127.0.0.0 localhost 0.0.0.0 lvh.me)
     localhost.include?(request.domain)
   end
 
   def validate_subdomain
-    subdomain_free_paths = %w(/ /users/login)
-    @current_organization = Organization.find_by_subdomain(request.subdomain)
-    unless subdomain_free_paths.include?(request.path) || @current_organization.present?
-      flash[:alert] = "Organization #{request.subdomain} didn't find. Domain or subdomain is incorrect."
-      redirect_to(root_path)
+    if current_organization.present?
+      true
+    else
+      if Rails.env.development?
+        unless current_organization.present?
+          @current_organization = Organization.first
+          flash[:alert] = "Subdomains it's only way set current organization and you doest use subdomain. So, I will set first organization, as current!" if root?(authenticated_root_path)
+        end
+      else
+        flash[:alert] = "Organization #{request.subdomain} didn't find. Domain or subdomain is incorrect."
+        redirect_to(unauthenticated_root_path)
+      end
     end
   end
 

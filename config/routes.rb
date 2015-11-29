@@ -32,7 +32,21 @@ Rails.application.routes.draw do
   end
 
 
-  root 'welcome#index'
+  root 'pages#show', title: "home"
+  root to: 'admin/pages#index', constraints: RoleConstraint.new('admin'), as: :admin_root
+  # root to: 'welcome#index', constraints: RoleConstraint.new('employee'), as: :employee_root
+
+
+  devise_scope :user do
+    authenticated :user do
+      root 'novelties#index', as: :authenticated_root
+    end
+
+    # unauthenticated do
+    #   root 'pages#show', id: "home", as: :unauthenticated_root
+    # end
+  end
+
 
 
   # The priority is based upon order of creation: first created -> highest priority.
