@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   devise_for :users, path_names: { sign_up: 'register' , sign_in: 'login' }, controllers: { registrations: 'registrations' }
 
   resources :novelties,:path => "/news", only: [:index, :show]
-  resources :pages, param: :title ,only: [:index, :show]
+  resources :pages, param: :url,only: [:index, :show]
   resources :projects do
     resources :comments, only: [:new, :create, :destroy]
     resources :attachments, only: [:create, :destroy] do
@@ -32,19 +32,19 @@ Rails.application.routes.draw do
   end
 
 
-  root 'pages#show', title: "home"
-  root to: 'admin/pages#index', constraints: RoleConstraint.new('admin'), as: :admin_root
+  #root 'pages#show', title: "home"
+  #root to: 'admin/pages#index', constraints: RoleConstraint.new('admin'), as: :admin_root
   # root to: 'welcome#index', constraints: RoleConstraint.new('employee'), as: :employee_root
 
 
   devise_scope :user do
-    authenticated :user do
+    unauthenticated do
+      root 'pages#show', url: "home"
+     end
+
+     authenticated :user do
       root 'novelties#index', as: :authenticated_root
     end
-
-    # unauthenticated do
-    #   root 'pages#show', id: "home", as: :unauthenticated_root
-    # end
   end
 
 
