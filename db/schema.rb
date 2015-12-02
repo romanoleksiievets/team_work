@@ -33,14 +33,6 @@ ActiveRecord::Schema.define(version: 20151129144806) do
 
   add_index "comments", ["owner_id"], name: "index_comments_on_owner_id", using: :btree
 
-  create_table "newes", force: :cascade do |t|
-    t.string   "title",      limit: 255
-    t.text     "body",       limit: 65535
-    t.string   "tag",        limit: 255
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
-  end
-
   create_table "novelties", force: :cascade do |t|
     t.string   "title",               limit: 255
     t.text     "body",                limit: 65535
@@ -70,7 +62,7 @@ ActiveRecord::Schema.define(version: 20151129144806) do
   create_table "organizations_users", force: :cascade do |t|
     t.integer "organization_id", limit: 4
     t.integer "user_id",         limit: 4
-    t.integer "role",            limit: 4, default: 0
+    t.integer "role",            limit: 4
   end
 
   add_index "organizations_users", ["organization_id"], name: "index_organizations_users_on_organization_id", using: :btree
