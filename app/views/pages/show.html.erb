@@ -1,11 +1,4 @@
-<p>
-  <strong>Title:</strong>
-  <%= @page.title %>
-</p>
-
-<p>
-  <strong>Body:</strong>
-  <%= @page.body %>
-</p>
-
-<%= link_to 'Back', pages_path %>
+<div class="page">
+  <h1><%= @page.title %></h1>
+  <p><%= @page.body %></p>
+</div>

@@ -1,63 +1,33 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>TeamWork</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body class="row" style="margin: 23px 0;">
-              <div class="col-xs-3 col-xs-offset-5 event">
-                    <% if flash[:notice] %>
-                <div id="notice"><%= flash[:notice] %><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button></div>
-                    <% end %>
-                    <% if flash[:error] %>
-                <div id="error"><%= flash[:error] %><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button></div>
-                    <% end %>
-                    <% if flash[:alert] %>
-                <div id="alert"><%= flash[:alert] %><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button></div>
-                    <% end %>
-            </div>
-<header class="col-xs-12">
-  <div class="col-xs-10 col-xs-offset-1" >
-      <div class=" col-xs-6">
-          <div class="col-xs-8">
-            <ul class="nav nav-pills">
-              <li><%= link_to 'Projects', projects_path %></li>
-              <li><%= link_to 'News', novelties_path %></li>
-              <% if current_page?("/")%>
-                <li><%= link_to 'Admin Panel', admin_path %></li>
-              <% end %>
-            </ul>
-          </div>
-          <div class="col-xs-12">
-            <ul class="nav nav-tabs">
-              <% Page.all.each do |page| %>
-                <li class="<%= "active" if  params[:title] == page.title  %>">
-                  <%= link_to page.title , page_path(page.title)if page.if_show == true %>
-                </li>
-              <%end%>
-            </ul>
-          </div>
-      </div>
-     <div class=" col-xs-12 col-sm-6" style="text-align: right;">
-        <% if current_user %>
-              Logged in as <%= link_to(current_user.email, edit_user_registration_path) %> |
-          <%= link_to("Sign Out", destroy_user_session_path, method: :delete) %>
-        <% else %>
-          <%= link_to("Sign In", new_user_session_path) %>
-        <% end %>
+  <head>
+    <title>TeamWork</title>
+    <base href="/" />
+    <meta charset = "utf-8" />
+    <meta content = "width=device-width, initial-scale=1" name = "viewport" />
+    <meta content = "IE=edge" "http-equiv" = "X-UA-Compatible" />
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <header class = "col-xs-12">
+      <nav class = "navbar navbar-default navbar-fixed-top">
+        <div class = "container-fluid">
+          <% if admin_side? %>
+            <%= render 'layouts/top_navigation_admin' %>
+            <% else %>
+            <%= render 'layouts/top_navigation' %>
+          <% end %>
+        </div>
+      </nav>
+    </header>
+    <div class="tbody col-xs-10 col-xs-offset-1" style = "margin-top:50px; min-height: 680px;">
+      <%= render partial: "shared/flash_messages", flash: flash %>
+      <%= yield %>
     </div>
-  </div>
-</header>
-
-<div class="tbody col-xs-10 col-xs-offset-1">
-  <%= yield %>
-</div>
-<footer class="col-xs-12">
-    <div class="center-block">
-      Site created  Team_Work , Disained Team_Work <%= Time.now.to_datetime.year %>
-    </div>
-</footer>
-</body>
+    <footer class="col-xs-12">
+      <div class="center-block"> Team_Work,  <%= Time.now.to_datetime.year %> </div>
+    </footer>
+  </body>
 </html>

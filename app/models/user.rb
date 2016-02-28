@@ -1,7 +1,8 @@
 class User < ActiveRecord::Base
+  include UserRoles
   validates_presence_of :name
 
-  devise :database_authenticatable, :recoverable, :rememberable, :trackable, :validatable, :registerable
+  devise :invitable, :database_authenticatable, :recoverable, :rememberable, :trackable, :validatable, :registerable
 
   has_and_belongs_to_many :organizations
   has_and_belongs_to_many :projects
@@ -15,7 +16,4 @@ class User < ActiveRecord::Base
 
   scope :free_users, -> (project) { User.where.not(id: (project.user_ids + [project.owner.id])).collect {|p| [ p.name, p.id ]  } }
 
- end
-
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
+end
