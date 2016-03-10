@@ -6,6 +6,8 @@ class ApplicationController < ActionController::Base
   before_action :validate_subdomain
   before_action :authenticate_user!#, except: [:index]
   before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :set_locale
+
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_up).concat [:name]
@@ -46,4 +48,7 @@ private
     end
   end
 
+  def set_locale
+    I18n.locale = params[:locale]
+  end
 end
