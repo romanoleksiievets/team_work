@@ -152,7 +152,6 @@ GEM
     mini_portile (0.6.2)
     minitest (5.8.3)
     multi_json (1.11.2)
-    mysql2 (0.4.2)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (3.0.1)
@@ -165,6 +164,7 @@ GEM
       cocaine (~> 0.5.5)
       mime-types
       mimemagic (= 0.3.0)
+    pg (0.18.4)
     quiet_assets (1.1.0)
       railties (>= 3.1, < 5.0)
     rack (1.6.4)
@@ -303,8 +303,8 @@ DEPENDENCIES
   jquery-ui-rails (~> 5.0.5)
   letter_opener
   meta_request
-  mysql2 (~> 0.4.2)
   paperclip (~> 4.3.2)
+  pg (~> 0.18.4)
   quiet_assets
   rails (= 4.2.5)
   rails-jquery-autocomplete
@@ -323,4 +323,4 @@ DEPENDENCIES
   web-console
 
 BUNDLED WITH
-   1.10.6
+   1.11.2
