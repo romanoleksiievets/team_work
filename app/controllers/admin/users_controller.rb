@@ -2,13 +2,14 @@ class Admin::UsersController < Admin::AdminController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   def index
-    pp request.subdomain
     @user = User.new
     @users = User.all
   end
 
   def send_invite
-    User.invite!(user_params)
+    User.invite!(user_params) do |u|
+      u.organizations_users.build(organization_id: params[:organization_id], role: OrganizationsUser.roles[params[:role]])
+    end
     redirect_to admin_users_url
   end
 

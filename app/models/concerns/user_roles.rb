@@ -13,7 +13,8 @@ module UserRoles
   end
 
   def project_admin_permissions?(project_id, organization_id)
-    organization_admin_permissions?(organization_id) || (organization_member_permissions?(organization_id) && ProjectsUser.where(user_id: self.id, project_id: project_id).first.try(:admin?))
+    organization_admin_permissions?(organization_id) || (organization_member_permissions?(organization_id) &&
+      ProjectsUser.where(user_id: self.id, project_id: project_id).first.try(:admin?))
   end
 
   def project_member_permissions?(project_id, organization_id)
