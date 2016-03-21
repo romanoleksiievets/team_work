@@ -16,7 +16,7 @@ class OrganizationsUser < ActiveRecord::Base
 private
 
   def set_default_role
-    self.role ||= :admin
+    self.role ||= :member
   end
 
 end

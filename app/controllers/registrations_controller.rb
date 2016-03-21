@@ -1,4 +1,4 @@
-  class RegistrationsController < Devise::RegistrationsController
+class RegistrationsController < Devise::RegistrationsController
 
   def new
     flash[:info] = 'Free registration is no allowed. Please, contact administrator and he will send you an invite.'
