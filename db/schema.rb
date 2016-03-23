@@ -13,112 +13,115 @@
 
 ActiveRecord::Schema.define(version: 20151202073143) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "attachments", force: :cascade do |t|
-    t.string   "attachment_file_name",    limit: 255
-    t.string   "attachment_content_type", limit: 255
-    t.integer  "attachment_file_size",    limit: 4
+    t.string   "attachment_file_name"
+    t.string   "attachment_content_type"
+    t.integer  "attachment_file_size"
     t.datetime "attachment_updated_at"
-    t.integer  "attachable_id",           limit: 4
-    t.integer  "user_id",                 limit: 4
-    t.string   "attachable_type",         limit: 255
+    t.integer  "attachable_id"
+    t.integer  "user_id"
+    t.string   "attachable_type"
   end
 
   create_table "comments", force: :cascade do |t|
-    t.integer  "project_id", limit: 4
-    t.text     "text",       limit: 65535
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
-    t.integer  "owner_id",   limit: 4
+    t.integer  "project_id"
+    t.text     "text"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "owner_id"
   end
 
   add_index "comments", ["owner_id"], name: "index_comments_on_owner_id", using: :btree
 
   create_table "novelties", force: :cascade do |t|
-    t.string   "title",               limit: 255
-    t.text     "body",                limit: 65535
-    t.string   "tag",                 limit: 255,   default: "none"
-    t.integer  "novelty_category_id", limit: 4
-    t.datetime "created_at",                                         null: false
-    t.datetime "updated_at",                                         null: false
+    t.string   "title"
+    t.text     "body"
+    t.string   "tag",                 default: "none"
+    t.integer  "novelty_category_id"
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
   end
 
   create_table "novelty_categories", force: :cascade do |t|
-    t.string   "name",       limit: 255
-    t.string   "color",      limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.string   "name"
+    t.string   "color"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "organizations", force: :cascade do |t|
-    t.integer  "owner_id",    limit: 4
-    t.string   "name",        limit: 255
-    t.text     "description", limit: 65535
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
-    t.string   "domain",      limit: 255
-    t.string   "subdomain",   limit: 255
+    t.integer  "owner_id"
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.string   "domain"
+    t.string   "subdomain"
   end
 
   create_table "organizations_users", force: :cascade do |t|
-    t.integer "organization_id", limit: 4
-    t.integer "user_id",         limit: 4
-    t.integer "role",            limit: 4
+    t.integer "organization_id"
+    t.integer "user_id"
+    t.integer "role"
   end
 
   add_index "organizations_users", ["organization_id"], name: "index_organizations_users_on_organization_id", using: :btree
   add_index "organizations_users", ["user_id"], name: "index_organizations_users_on_user_id", using: :btree
 
   create_table "pages", force: :cascade do |t|
-    t.string   "title",       limit: 255
-    t.text     "body",        limit: 65535
-    t.string   "description", limit: 255
-    t.datetime "created_at",                                null: false
-    t.datetime "updated_at",                                null: false
-    t.boolean  "visible",                   default: false
-    t.integer  "position",    limit: 4
-    t.string   "url",         limit: 255
+    t.string   "title"
+    t.text     "body"
+    t.string   "description"
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.boolean  "visible",     default: false
+    t.integer  "position"
+    t.string   "url"
   end
 
   create_table "projects", force: :cascade do |t|
-    t.string   "title",      limit: 255
-    t.text     "text",       limit: 65535
-    t.string   "city",       limit: 255
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
-    t.integer  "owner_id",   limit: 4
+    t.string   "title"
+    t.text     "text"
+    t.string   "city"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "owner_id"
   end
 
   add_index "projects", ["owner_id"], name: "index_projects_on_owner_id", using: :btree
 
   create_table "projects_users", id: false, force: :cascade do |t|
-    t.integer "project_id", limit: 4
-    t.integer "user_id",    limit: 4
-    t.integer "role",       limit: 4, default: 0
+    t.integer "project_id"
+    t.integer "user_id"
+    t.integer "role",       default: 0
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                  limit: 255, default: "",    null: false
-    t.string   "encrypted_password",     limit: 255, default: "",    null: false
-    t.string   "reset_password_token",   limit: 255
+    t.string   "email",                  default: "",    null: false
+    t.string   "encrypted_password",     default: "",    null: false
+    t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          limit: 4,   default: 0,     null: false
+    t.integer  "sign_in_count",          default: 0,     null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip",     limit: 255
-    t.string   "last_sign_in_ip",        limit: 255
-    t.datetime "created_at",                                         null: false
-    t.datetime "updated_at",                                         null: false
-    t.string   "name",                   limit: 255
-    t.string   "invitation_token",       limit: 255
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
+    t.string   "name"
+    t.string   "invitation_token"
     t.datetime "invitation_created_at"
     t.datetime "invitation_sent_at"
     t.datetime "invitation_accepted_at"
-    t.integer  "invitation_limit",       limit: 4
-    t.integer  "invited_by_id",          limit: 4
-    t.string   "invited_by_type",        limit: 255
-    t.integer  "invitations_count",      limit: 4,   default: 0
-    t.boolean  "admin",                              default: false
+    t.integer  "invitation_limit"
+    t.integer  "invited_by_id"
+    t.string   "invited_by_type"
+    t.integer  "invitations_count",      default: 0
+    t.boolean  "admin",                  default: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
