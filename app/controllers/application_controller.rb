@@ -37,7 +37,7 @@ private
       if Rails.env.development?
         unless current_organization.present?
           @current_organization = Organization.first
-          flash[:alert] = "Subdomains it's only way set current organization and you doest use subdomain. So, I will set first organization, as current!" if root?(authenticated_root_path)
+          # flash[:alert] = "Subdomains it's only way set current organization and you doest use subdomain. So, I will set first organization, as current!" if root?(authenticated_root_path)
         end
       else
         flash[:alert] = "Organization #{request.subdomain} didn't find. Domain or subdomain is incorrect."

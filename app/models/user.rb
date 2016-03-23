@@ -1,11 +1,13 @@
 class User < ActiveRecord::Base
   include UserRoles
+
   validates_presence_of :name
 
   devise :invitable, :database_authenticatable, :recoverable, :rememberable, :trackable, :validatable, :registerable
 
-  has_and_belongs_to_many :organizations
   has_and_belongs_to_many :projects
+  has_many :organizations_users
+  has_many :organizations, through: :organizations_users
   has_many :my_organizations, class_name: "Organization", foreign_key: :owner_id
   has_many :my_projects, class_name: "Project", foreign_key: :owner_id
   has_many :comments, foreign_key: :owner_id
