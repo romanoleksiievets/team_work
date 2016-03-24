@@ -1,4 +1,4 @@
-class  Admin::NoveltiesController < ApplicationController
+class  OrganizationAdmin::NoveltiesController < OrganizationAdmin::AdminController
   before_action :set_novelties, only: [:show, :edit, :update, :destroy]
   before_action :set_novelty_categories, only: [:index, :show, :new]
 
@@ -24,9 +24,9 @@ class  Admin::NoveltiesController < ApplicationController
   def create
     @novelty = Novelty.new(novelty_params)
       if @novelty.save
-         redirect_to admin_novelties_path, notice: 'novelty was successfully created.'
+         redirect_to organization_admin_novelties_path, notice: 'novelty was successfully created.'
       else
-         redirect_to new_admin_novelty_path
+         redirect_to new_organization_admin_novelty_path
          flash[:error] = ' ERROR fill the form'
       end
   end
@@ -44,7 +44,7 @@ class  Admin::NoveltiesController < ApplicationController
 
   def destroy
     @novelty.destroy
-    redirect_to admin_novelties_path, notice: 'novelty was successfully destroyed.'
+    redirect_to organization_admin_novelties_path, notice: 'novelty was successfully destroyed.'
   end
 
   private

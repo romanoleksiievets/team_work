@@ -1,0 +1,28 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @organization.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @organization.description %>
+</p>
+<p>
+  <strong>Domain:</strong>
+  <%= @organization.domain %>
+</p>
+
+<p>
+  <strong>Subdomain:</strong>
+  <%= @organization.subdomain %>
+</p>
+
+<p>
+  <strong>Owner:</strong>
+  <%= @organization.owner.name %>
+</p>
+
+<%= link_to 'Edit', edit_system_admin_organization_path(@organization) %> |
+<%= link_to 'Back', system_admin_organizations_path %>

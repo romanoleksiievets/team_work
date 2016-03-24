@@ -1,5 +1,5 @@
   <div class="panel panel-default">
-    <%= form_for [:admin, @novelty_category_create], remote: true do |f| %>
+    <%= form_for [:organization_admin, @novelty_category_create], remote: true do |f| %>
       <% if @novelty_category_create.errors.any? %>
         <div id="error_explanation" class="panel panel-heading">
           <h2><%= pluralize(@novelty_category_create.errors.count, "error") %> prohibited this novelty_category_create from being saved:</h2>

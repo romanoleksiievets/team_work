@@ -1,4 +1,4 @@
-class Admin::NoveltyCategoriesController < ApplicationController
+class OrganizationAdmin::NoveltyCategoriesController < OrganizationAdmin::AdminController
   before_action :set_novelty_category, only: [:destroy, :update]
 
   def create
@@ -7,11 +7,11 @@ class Admin::NoveltyCategoriesController < ApplicationController
         @novelty_categories = NoveltyCategory.all
         @select_options = @novelty_categories.map{|c| "<option style='color:#{c.color}' value='#{c.id}'>#{c.name}</option>"}.join(" ")
         respond_to do |format|
-          format.js { render "admin/novelties/create" }
+          format.js { render "organization_admin/novelties/create" }
         end
       else
       flash[:error] = 'Error fill the form'
-      redirect_to new_admin_novelty_path
+      redirect_to new_organization_admin_novelty_path
     end
   end
 
@@ -27,7 +27,7 @@ class Admin::NoveltyCategoriesController < ApplicationController
 
   def destroy
     @novelty_category.destroy
-    redirect_to new_admin_novelty_path
+    redirect_to new_organization_admin_novelty_path
   end
 
   private

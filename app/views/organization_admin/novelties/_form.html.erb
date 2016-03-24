@@ -1,4 +1,4 @@
- <%= form_for  [:admin, @novelty] do |f| %>
+ <%= form_for  [:organization_admin, @novelty] do |f| %>
     <% if @novelty.errors.any? %>
        <div id="error_explanation">
           <h2><%= pluralize(@novelty.errors.count, "error") %> prohibited this novelty from being saved:</h2>

@@ -1,0 +1,24 @@
+<% if @novelty_categories.empty?%>
+  <% if current_page?("/organization_admin/novelties/#{params[:id]}")%>
+    <p><%= link_to "create category" , new_organization_admin_novelty_path, :class => "btn btn-info"%></p>
+  <%end %>
+<%else%>
+ <table class="table table-hover">
+   <caption><b>All category:</b></caption>
+    <thead>
+    <tr>
+      <th></th>
+      <th>Name</th>
+      <th>Color</th>
+    </tr>
+  </thead>
+  <% @novelty_categories.each  do |category| %>
+    <tr>
+      <td  class="<%=category.id %>" style="background-color: <%=category.color %> " ><span style="float: right"class="glyphicon glyphicon-hand-right"></span></td>
+      <td><%= best_in_place [:organization_admin, category],  :name %></td>
+      <td><%= best_in_place [:organization_admin, category],  :color %></td>
+      <!-- <td><%#= link_to "", [:organization_admin, category] , :class => "glyphicon glyphicon-minus" ,method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
+    </tr>
+   <%end %>
+  </table>
+ <%end %>

@@ -1,16 +1,16 @@
 module UserRoles
   extend ActiveSupport::Concern
-  def admin_permissions?
-    admin
+  def system_admin_permissions?
+    system_admin
   end
 
   def organization_admin_permissions?(organization_id)
-    admin_permissions? ||
+    system_admin_permissions? ||
     OrganizationsUser.where(user_id: self.id, organization_id: organization_id).first.try(:admin?)
   end
 
   def organization_member_permissions?(organization_id)
-    admin_permissions? ||
+    system_admin_permissions? ||
     OrganizationsUser.where(user_id: self.id, organization_id: organization_id).first.present?
   end
 
