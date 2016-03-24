@@ -15,7 +15,12 @@ Rails.application.routes.draw do
     end
   end
 
-  namespace :admin do
+  namespace :system_admin do
+    resources :organizations
+    get '/' => 'organizations#index'
+  end
+
+  namespace :organization_admin, path: "admin" do
     resources :novelties,:path => "/news", only: [:new, :create, :update, :destroy, :show, :index]
     resources :novelty_categories, only: [:new, :create, :update, :destroy]
     resources :users, except: [:new, :create, :show] do
@@ -28,7 +33,7 @@ Rails.application.routes.draw do
       end
     end
 
-    get '/' => 'dashboard#index'
+    get '/' => 'pages#index'
   end
 
 

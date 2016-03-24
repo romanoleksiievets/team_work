@@ -1,7 +1,7 @@
 .navbar-header
   = link_to :root, :class => "navbar-brand navbar-brand-emphasized" do
     %span.icon.icon-leaf.navbar-brand-icon
-    = current_organization.name.humanize
+    = current_organization.try(:name).try(:humanize)
   %button.navbar-toggle.collapsed{"aria-controls" => "navbar", "aria-expanded" => "false", "data-target" => "#navbar", "data-toggle" => "collapse", :type => "button"}
     %span.sr-only Toggle navigation
     %span.icon-bar
@@ -9,9 +9,9 @@
     %span.icon-bar
 #navbar
   %ul.nav.navbar-nav{style: 'margin-left: 20px;'}
-    = active_link_to 'Pages', admin_pages_path
-    = active_link_to 'News', admin_novelties_path
-    = active_link_to 'Users', admin_users_path
+    = active_link_to 'Pages', organization_admin_pages_path
+    = active_link_to 'News', organization_admin_novelties_path
+    = active_link_to 'Users', organization_admin_users_path
 .pull-right(style="padding: 18px 20px;")
   - if current_user
     = link_to(current_user.email, edit_user_registration_path)

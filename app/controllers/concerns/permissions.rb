@@ -4,9 +4,9 @@ module Permissions
   included do
   end
 
-  def admin_only
-    message = 'Only admin can access this page.'
-    permission_error message unless current_user.admin_permissions?
+  def system_admin_only
+    message = 'Only system admin can access this page.'
+    permission_error message unless current_user.system_admin_permissions?
   end
 
   def organization_admin_only
