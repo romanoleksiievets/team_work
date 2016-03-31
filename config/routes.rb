@@ -1,58 +1,56 @@
 Rails.application.routes.draw do
-  devise_for :users, path_names: { sign_up: 'register' , sign_in: 'login' }, controllers: { registrations: 'registrations' }
+  scope "(:locale)", locale: /#{I18n.available_locales.join("|")}/ do
+    devise_for :users, path_names: { sign_up: 'register' , sign_in: 'login' }, controllers: { registrations: 'registrations' }
 
-  resources :novelties,:path => "/news", only: [:index, :show]
-  resources :pages, param: :url,only: [:index, :show]
-  resources :projects do
-    resources :comments, only: [:new, :create, :destroy]
-    resources :attachments, only: [:create, :destroy] do
-      member do
-        get 'download'
-        post 'add'
-        delete 'del'
-      end
-     #match "attachments/:id" => "attachment#download", as: :download, via: [:get, :post]
-    end
-  end
-
-  namespace :system_admin do
-    resources :organizations
-    get '/' => 'organizations#index'
-  end
-
-  namespace :organization_admin, path: "admin" do
-    resources :novelties,:path => "/news", only: [:new, :create, :update, :destroy, :show, :index]
-    resources :novelty_categories, only: [:new, :create, :update, :destroy]
-    resources :users, except: [:new, :create, :show] do
-      post :send_invite, on: :collection
-    end
-    resources :pages do
-      collection  do
-        post :edit_multiple
-        put :update_multiple
+    resources :novelties,:path => "/news", only: [:index, :show]
+    resources :pages, param: :url,only: [:index, :show]
+    resources :projects do
+      resources :comments, only: [:new, :create, :destroy]
+      resources :attachments, only: [:create, :destroy] do
+        member do
+          get 'download'
+          post 'add'
+          delete 'del'
+        end
+       #match "attachments/:id" => "attachment#download", as: :download, via: [:get, :post]
       end
     end
 
-    get '/' => 'pages#index'
-  end
+    namespace :system_admin do
+      resources :organizations
+      get '/' => 'organizations#index'
+    end
 
+    namespace :organization_admin, path: "admin" do
+      resources :novelties,:path => "/news", only: [:new, :create, :update, :destroy, :show, :index]
+      resources :novelty_categories, only: [:new, :create, :update, :destroy]
+      resources :users, except: [:new, :create, :show] do
+        post :send_invite, on: :collection
+      end
+      resources :pages do
+        collection  do
+          post :edit_multiple
+          put :update_multiple
+        end
+      end
+
+      get '/' => 'pages#index'
+    end
+
+    devise_scope :user do
+      unauthenticated do
+        root 'pages#show', url: "home"
+       end
+
+       authenticated :user do
+        root 'novelties#index', as: :authenticated_root
+      end
+    end
+  end
 
   #root 'pages#show', title: "home"
   #root to: 'admin/pages#index', constraints: RoleConstraint.new('admin'), as: :admin_root
   # root to: 'welcome#index', constraints: RoleConstraint.new('employee'), as: :employee_root
-
-
-  devise_scope :user do
-    unauthenticated do
-      root 'pages#show', url: "home"
-     end
-
-     authenticated :user do
-      root 'novelties#index', as: :authenticated_root
-    end
-  end
-
-
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -109,3 +107,5 @@ Rails.application.routes.draw do
   #     resources :products
   #   end
 end
+
+
