@@ -3,11 +3,10 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   helper_method :current_organization
 
-  before_action :validate_subdomain
+  before_action :validate_domain
   before_action :authenticate_user!#, except: [:index]
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :set_locale
-
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_up).concat [:name]
@@ -16,9 +15,18 @@ class ApplicationController < ActionController::Base
 
 protected
 
-  def current_organization
-    #TODO: need cache organizations list
-    @current_organization ||= Organization.find_by_subdomain(request.subdomain) || Organization.find_by_domain(request.domain)
+  def current_domain
+    ENV["DOMAIN"].presence || request.domain
+  end
+
+  def current_subdomain
+    ENV["SUBDOMAIN"].presence || request.subdomain
+  end
+
+  def current_organization(domain_or_subdomain=nil)
+    #TODO: need cache organizations list and first organization
+    current_organization = Organization.find_by_domain(current_domain) || Organization.find_by_domain(current_subdomain)
+    @current_organization ||= Rails.env.development? ? current_organization || Organization.first : current_organization
   end
 
 private
@@ -28,23 +36,16 @@ private
   end
 
   def localhost?
-    localhost = %w(127.0.0.0 localhost 0.0.0.0 lvh.me)
+    localhost = %w(127.0.0.0 localhost 0.0.0.0 lvh.me team_work)
     localhost.include?(request.domain)
   end
 
-  def validate_subdomain
+  def validate_domain
     if current_organization.present?
       true
     else
-      if Rails.env.development?
-        unless current_organization.present?
-          @current_organization = Organization.first
-          # flash[:alert] = "Subdomains it's only way set current organization and you doest use subdomain. So, I will set first organization, as current!" if root?(authenticated_root_path)
-        end
-      else
-        flash[:alert] = "Organization #{request.subdomain} didn't find. Domain or subdomain is incorrect."
-        redirect_to(unauthenticated_root_path)
-      end
+      flash[:alert] = "Organization with domain = #{request.domain} and subdomain = #{request.subdomain} didn't find. Domain or subdomain is incorrect."
+      redirect_to(root_path)
     end
   end
 
