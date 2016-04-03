@@ -25,8 +25,9 @@ protected
 
   def current_organization(domain_or_subdomain=nil)
     #TODO: need cache organizations list and first organization
-    current_organization = Organization.find_by_domain(current_domain) || Organization.find_by_domain(current_subdomain)
-    @current_organization ||= Rails.env.development? ? current_organization || Organization.first : current_organization
+    return @current_organization if @current_organization.present?
+    current_organization = Organization.find_by_domain(current_domain) || Organization.find_by_subdomain(current_subdomain)
+    @current_organization = Rails.env.development? ? current_organization || Organization.first : current_organization
   end
 
 private
@@ -44,8 +45,7 @@ private
     if current_organization.present?
       true
     else
-      flash[:alert] = "Organization with domain = #{request.domain} and subdomain = #{request.subdomain} didn't find. Domain or subdomain is incorrect."
-      redirect_to(root_path)
+      redirect_to root_path, alert: "Organization with domain = #{request.domain} and subdomain = #{request.subdomain} didn't find. Domain or subdomain is incorrect."
     end
   end
 
