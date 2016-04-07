@@ -36,7 +36,6 @@ module Permissions
 private
 
   def permission_error(message)
-      flash[:alert] = message
-      redirect_to(root_path)
+    redirect_to(root_path, alert: message)
   end
 end

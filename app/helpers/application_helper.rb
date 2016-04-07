@@ -1,5 +1,12 @@
 module ApplicationHelper
 
+  BOOTSTRAP_FLASH_MSG = {
+    success: 'alert-success',
+    error: 'alert-error',
+    alert: 'alert-block',
+    notice: 'alert-info'
+  }
+
   def admin_side?
     controller.class.to_s.include?("Admin::")
   end
