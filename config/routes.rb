@@ -39,11 +39,11 @@ Rails.application.routes.draw do
 
     devise_scope :user do
       unauthenticated do
-        root 'pages#show', url: "home"
-       end
+        root 'pages#show', url: "home", as: :unauthenticated_root
+      end
 
-       authenticated :user do
-        root 'novelties#index', as: :authenticated_root
+      authenticated :user do
+        root 'novelties#index'
       end
     end
   end
