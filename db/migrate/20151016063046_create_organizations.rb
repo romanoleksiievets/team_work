@@ -7,7 +7,6 @@ class CreateOrganizations < ActiveRecord::Migration
 
       t.timestamps null: false
     end
-    Organization.create(name: "First Test Organization", owner_id: 1)
   end
 
   def down

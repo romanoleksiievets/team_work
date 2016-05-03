@@ -44,6 +44,6 @@ class SystemAdmin::OrganizationsController < SystemAdmin::AdminController
     end
 
     def organization_params
-      params.require(:organization).permit(:name, :description, :domain, :subdomain, :owner_id)
+      params.require(:organization).permit(:name, :description, :domain, :owner_id)
     end
 end

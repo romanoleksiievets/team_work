@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  MAIN_DOMAIN = "teamwork.in.ua"
   include Permissions
   protect_from_forgery with: :exception
   helper_method :current_organization
@@ -25,9 +26,7 @@ protected
 
   def current_organization(domain_or_subdomain=nil)
     #TODO: need cache organizations list and first organization
-    return @current_organization if @current_organization.present?
-    current_organization = Organization.find_by_domain(current_domain) || Organization.find_by_subdomain(current_subdomain)
-    @current_organization = Rails.env.development? ? current_organization || Organization.first : current_organization
+    @current_organization = Organization.find_by_domain(current_domain)
   end
 
 private
@@ -45,7 +44,8 @@ private
     if current_organization.present?
       true
     else
-      redirect_to root_path, alert: "Organization with domain = #{request.domain} and subdomain = #{request.subdomain} didn't find. Domain or subdomain is incorrect."
+      raise ActionController::RoutingError.new("Organization with such domain doesn't dound.")
+      # redirect_to root_path, alert: "Organization with domain = #{request.domain} and subdomain = #{request.subdomain} didn't find. Domain or subdomain is incorrect."
     end
   end
 
