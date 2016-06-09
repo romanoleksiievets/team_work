@@ -32,7 +32,7 @@ protected
 
 private
 
-  def root?(type="/")
+  def root?(type = "/")
     request.path == type
   end
 
