@@ -20,11 +20,8 @@
   </div>
   <div class="field">
     <%= f.label :domain %><br>
+    <p> Set organization custom domain or use our domain with your subdomain in format 'subdomain.<%= ApplicationController::MAIN_DOMAIN %>'</p>
     <%= f.text_field :domain %>
-  </div>
-  <div class="field">
-    <%= f.label :subdomain %><br>
-    <%= f.text_field :subdomain %>
   </div>
   <div class="field">
     <%= f.label :owner_id %><br>

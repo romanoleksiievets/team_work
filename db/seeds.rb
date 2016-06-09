@@ -7,4 +7,5 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 # This is default user
+Organization.create(owner_id: 1, name: 'First Organization', domain: "first")
 User.create(email: 'fedorniakl@gmail.com', password: 'FirstSA10', name: 'Lyubomyr', system_admin: true)

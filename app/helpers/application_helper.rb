@@ -7,8 +7,12 @@ module ApplicationHelper
     notice: 'alert-info'
   }
 
-  def admin_side?
-    controller.class.to_s.include?("Admin::")
+  def system_admin_side?
+    controller.class.to_s.include?("SystemAdmin::")
+  end
+
+  def organization_admin_side?
+    controller.class.to_s.include?("OrganizationAdmin::")
   end
 
   def active_link_to(title, link_path)

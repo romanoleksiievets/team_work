@@ -14,9 +14,11 @@
     <header class = "col-xs-12">
       <nav class = "navbar navbar-default navbar-fixed-top">
         <div class = "container-fluid">
-          <% if admin_side? %>
-            <%= render 'layouts/top_navigation_admin' %>
-            <% else %>
+          <% if system_admin_side? %>
+            <%= render 'layouts/top_navigation_system_admin' %>
+          <% elsif organization_admin_side? %>
+            <%= render 'layouts/top_navigation_organization_admin' %>
+          <% else %>
             <%= render 'layouts/top_navigation' %>
           <% end %>
         </div>
