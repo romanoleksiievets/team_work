@@ -16,17 +16,29 @@ class ApplicationController < ActionController::Base
 
 protected
 
+  def main_domain?
+    Rails.env.development? ? true : request.base_url.match(/^.*#{MAIN_DOMAIN}$/).present?
+  end
+
   def current_domain
-    @current_domain = request.domain
+    Organization.find_each do |organization|
+      domain = organization.domain
+      if request.base_url.match(/^.*#{domain}$/).present?
+        return @current_domain = domain
+      end
+    end
   end
 
   def current_subdomain
-    @current_subdomain = Rails.env.development? ? request.domain.split(".").first : request.subdomain
+    main_domain = Rails.env.development? ? "localhost:3000" : MAIN_DOMAIN
+    subdomain = request.base_url.match(/^(.*)\.#{main_domain}$/).try(:[], 1)
+    ["www.", "http://", "https://"].each {|filter| subdomain.slice!(filter) } if subdomain.present?
+    @current_subdomain = subdomain
   end
 
   def current_organization(domain_or_subdomain=nil)
     #TODO: need cache organizations list and first organization
-    @current_organization = Organization.find_by_domain(current_domain)
+    @current_organization ||= main_domain? ? Organization.find_by_subdomain(current_subdomain) : Organization.find_by_domain(current_domain)
   end
 
 private
