@@ -17,11 +17,11 @@ class ApplicationController < ActionController::Base
 protected
 
   def current_domain
-    ENV["DOMAIN"].presence || request.domain
+    @current_domain = request.domain
   end
 
   def current_subdomain
-    ENV["SUBDOMAIN"].presence || request.subdomain
+    @current_subdomain = Rails.env.development? ? request.domain.split(".").first : request.subdomain
   end
 
   def current_organization(domain_or_subdomain=nil)
@@ -31,7 +31,11 @@ protected
 
 private
 
-  def root?(type="/")
+  def render_404_domain
+    render :file => "#{Rails.root}/public/404_domain", :layout => false, :status => :not_found
+  end
+
+  def root?(type = "/")
     request.path == type
   end
 
@@ -44,8 +48,7 @@ private
     if current_organization.present?
       true
     else
-      raise ActionController::RoutingError.new("Organization with such domain doesn't dound.")
-      # redirect_to root_path, alert: "Organization with domain = #{request.domain} and subdomain = #{request.subdomain} didn't find. Domain or subdomain is incorrect."
+      render_404_domain
     end
   end
 
