@@ -1,0 +1,6 @@
+uk:
+  hello: "Привіт"
+  layouts:
+    top_navigation:
+      sign_in: 'Увійти'
+      sign_out: 'Вийти'

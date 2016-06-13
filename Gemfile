@@ -22,6 +22,10 @@ gem 'toastr_rails'
 gem 'devise', '~> 3.5.2'
 gem 'devise_invitable', '~> 1.5.3'
 gem 'paperclip', '~> 4.3.2'
+gem "bower-rails", "~> 0.10.0"
+
+gem 'globalize', '~> 5.0.1'
+gem 'globalize-accessors', '~> 0.2.1'
 
 group :development, :test do
   gem 'rspec-rails'
@@ -51,8 +55,5 @@ group :development do
   gem "better_errors"
   gem "binding_of_caller"
   gem 'meta_request'
-  gem 'capistrano',         require: false
-  gem 'capistrano-rails',   require: false
-  gem 'rvm1-capistrano3', require: false
-  gem 'capistrano3-unicorn', require: false
+  gem 'html2haml'
 end

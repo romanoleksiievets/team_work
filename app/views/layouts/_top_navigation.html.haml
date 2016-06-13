@@ -1,32 +1,26 @@
-.navbar-header
-  = link_to :root, class: "navbar-brand navbar-brand-emphasized" do
-    %span.icon.icon-leaf.navbar-brand-icon
-    = current_organization.name.humanize
-  %button.navbar-toggle.collapsed{"aria-controls" => "navbar", "aria-expanded" => "false", "data-target" => "#navbar", "data-toggle" => "collapse", type: "button"}
-    %span.sr-only Toggle navigation
-    %span.icon-bar
-    %span.icon-bar
-    %span.icon-bar
-#navbar
-  %ul.nav.navbar-nav{style: 'margin-left: 20px;'}
-    - Page.order_position.each do |page|
-      = active_link_to page.title , page_path(page.url) if page.visible?
-    - if user_signed_in?
-      = active_link_to 'News', novelties_path
-      = active_link_to 'Projects', projects_path
-.pull-right(style="padding: 18px 20px;")
-  Languages:
-  = link_to('en', locale: 'en')
-  |
-  = link_to('ru', locale: 'ru')
-  |
-  - if user_signed_in?
-    - if current_user.system_admin_permissions?
-      = link_to 'System Admin', system_admin_path, style: "margin-right: 40px;"
-    - if current_user.organization_admin_permissions?(current_organization.id)
-      = link_to 'Admin', organization_admin_path, style: "margin-right: 40px;"
-    = link_to(current_user.email, edit_user_registration_path)
-    |
-    = link_to(t('.sign_out'), destroy_user_session_path, method: :delete)
-  - else
-    = link_to(t('.sign_in'), new_user_session_path)
+%nav.navbar.navbar-default.navbar-fixed-top
+  .container-fluid
+    .navbar-header
+      = link_to :root, class: "navbar-brand navbar-brand-emphasized" do
+        %span.icon.icon-leaf.navbar-brand-icon
+        = current_organization.name.humanize
+      %button.navbar-toggle.collapsed{"aria-controls" => "navbar", "aria-expanded" => "false", "data-target" => "#navbar", "data-toggle" => "collapse", type: "button"}
+        %span.sr-only Toggle navigation
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+    #navbar
+      %ul.nav.navbar-nav.navbar-left{style: 'margin-left: 20px;'}
+        - Page.order_position.each do |page|
+          = active_link_to page.title , page_path(page.url) if page.visible?
+        - if user_signed_in?
+          = active_link_to 'News', novelties_path
+          = active_link_to 'Projects', projects_path
+      %ul.nav.navbar-nav.navbar-right
+        - if user_signed_in?
+          %li= render "layouts/intop_admin_navigation"
+          %li.dropdown= render "layouts/intop_language_navigation"
+          %li.dropdown= render "layouts/intop_user_navigation"
+        - else
+          %li.dropdown= render "intop_layouts/language_navigation"
+          %li= link_to(t('.sign_in'), new_user_session_path)

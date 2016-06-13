@@ -12,17 +12,13 @@
   </head>
   <body>
     <header class = "col-xs-12">
-      <nav class = "navbar navbar-default navbar-fixed-top">
-        <div class = "container-fluid">
-          <% if system_admin_side? %>
-            <%= render 'layouts/top_navigation_system_admin' %>
-          <% elsif organization_admin_side? %>
-            <%= render 'layouts/top_navigation_organization_admin' %>
-          <% else %>
-            <%= render 'layouts/top_navigation' %>
-          <% end %>
-        </div>
-      </nav>
+      <% if system_admin_side? %>
+        <%= render 'layouts/top_navigation_system_admin' %>
+      <% elsif organization_admin_side? %>
+        <%= render 'layouts/top_navigation_organization_admin' %>
+      <% else %>
+        <%= render 'layouts/top_navigation' %>
+      <% end %>
     </header>
     <div class="tbody col-xs-10 col-xs-offset-1" style = "margin-top:50px; min-height: 680px;">
       <%= render partial: "shared/flash_messages", flash: flash %>

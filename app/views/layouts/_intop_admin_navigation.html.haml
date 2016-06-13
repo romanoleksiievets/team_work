@@ -1,0 +1,4 @@
+- if current_user.system_admin_permissions?
+  %li= link_to 'System Admin', system_admin_path, style: "margin-right: 40px;"
+- if current_user.organization_admin_permissions?(current_organization.id)
+  %li= link_to 'Admin', organization_admin_path, style: "margin-right: 40px;"
