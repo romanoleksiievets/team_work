@@ -1,0 +1,31 @@
+h1
+  | Listing Pages
+table.table.table-hover
+  thead
+    tr
+      th
+        | Title
+      th
+        | Body
+      th
+        | Description
+      th[colspan="2"]
+  tbody
+    - @pages.each do |page|
+      tr
+        td
+          = link_to page.title , organization_admin_page_path(page)
+        td
+          = page.body
+        td
+          = page.description
+        td
+          = page.visible
+        td
+          = link_to 'Edit' , edit_organization_admin_page_path(page)
+        td
+          = link_to 'Destroy', organization_admin_page_path(page) ,method: :delete, data: { confirm: 'Are you sure?' }
+br
+= link_to 'New Page' , new_organization_admin_page_path
+br
+= link_to 'Back' , organization_admin_path

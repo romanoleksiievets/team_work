@@ -11,12 +11,14 @@ gem 'jquery-rails', '~> 4.0.5'
 gem 'jquery-ui-rails', '~> 5.0.5'
 gem 'jquery-turbolinks', '~> 2.1.0'
 gem 'bootstrap-sass', '~> 3.3.6'
+gem 'bootstrap_form'
 gem 'coffee-rails', '~> 4.1.0'
 gem 'jbuilder', '~> 2.3.2'
 gem 'sdoc', '~> 0.4.1', group: :doc
 gem 'best_in_place'
 gem 'rails-jquery-autocomplete'
 gem 'haml', '~> 4.0.7'
+gem 'slim'
 gem 'toastr_rails'
 
 gem 'devise', '~> 3.5.2'
@@ -56,4 +58,5 @@ group :development do
   gem "binding_of_caller"
   gem 'meta_request'
   gem 'html2haml'
+  gem 'html2slim'
 end

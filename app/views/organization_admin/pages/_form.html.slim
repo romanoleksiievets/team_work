@@ -1,0 +1,8 @@
+= bootstrap_form_for [:organization_admin, @page] do |f|
+  = f.text_field :url
+  = f.text_field :title
+  = f.text_field :description
+  = f.check_box :visible
+  = f.text_area :body
+  = f.text_field :position
+  = f.submit
