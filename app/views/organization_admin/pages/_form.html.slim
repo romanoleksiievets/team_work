@@ -1,8 +1,10 @@
-= bootstrap_form_for [:organization_admin, @page] do |f|
-  = f.text_field :url
-  = f.text_field :title
-  = f.text_field :description
-  = f.check_box :visible
-  = f.text_area :body
-  = f.text_field :position
-  = f.submit
+.row
+  .col-md-8
+    = bootstrap_form_for [:organization_admin, @page] do |f|
+      = f.text_field :url
+      = f.text_field :title, icon: "globe"
+      = f.text_field :description, icon: "globe"
+      = f.check_box :visible
+      = f.cktext_area :body, icon: "globe", rows: "12", ckeditor: {language: I18n.locale}
+      = f.text_field :position
+      = f.submit

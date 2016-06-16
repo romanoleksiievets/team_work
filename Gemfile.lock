@@ -68,6 +68,9 @@ GEM
     capybara-screenshot (1.0.13)
       capybara (>= 1.0, < 3)
       launchy
+    ckeditor (4.1.6)
+      cocaine
+      orm_adapter (~> 0.5.0)
     climate_control (0.0.3)
       activesupport (>= 3.0)
     cocaine (0.5.8)
@@ -91,6 +94,7 @@ GEM
       responders
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
+    devise-i18n (1.1.0)
     devise_invitable (1.5.5)
       actionmailer (>= 3.2.6, < 5)
       devise (>= 3.2.0)
@@ -293,9 +297,11 @@ DEPENDENCIES
   byebug
   capybara
   capybara-screenshot
+  ckeditor
   coffee-rails (~> 4.1.0)
   database_cleaner
   devise (~> 3.5.2)
+  devise-i18n
   devise_invitable (~> 1.5.3)
   factory_girl_rails
   faker

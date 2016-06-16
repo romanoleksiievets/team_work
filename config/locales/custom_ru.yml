@@ -1,0 +1,6 @@
+ru:
+  layouts:
+    top_navigation:
+      sign_in: "Войти"
+      projects: "Проекты"
+      news: "Новости"

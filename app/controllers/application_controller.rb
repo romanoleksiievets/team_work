@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_up).concat [:name]
-    devise_parameter_sanitizer.for(:account_update).concat [:name]
+    devise_parameter_sanitizer.for(:account_update).concat [:name, :language]
   end
 
 protected
@@ -65,7 +65,7 @@ private
   end
 
   def set_locale
-    I18n.locale = params[:locale] || I18n.default_locale
+    I18n.locale = params[:locale] || current_user.try(:language) || User.languages.keys.first
   end
 
   def default_url_options(options = {})

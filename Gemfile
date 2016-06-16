@@ -23,11 +23,14 @@ gem 'toastr_rails'
 
 gem 'devise', '~> 3.5.2'
 gem 'devise_invitable', '~> 1.5.3'
+gem 'devise-i18n'
 gem 'paperclip', '~> 4.3.2'
 gem "bower-rails", "~> 0.10.0"
 
 gem 'globalize', '~> 5.0.1'
 gem 'globalize-accessors', '~> 0.2.1'
+
+gem 'ckeditor'
 
 group :development, :test do
   gem 'rspec-rails'

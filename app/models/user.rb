@@ -13,6 +13,7 @@ class User < ActiveRecord::Base
   has_many :comments, foreign_key: :owner_id
   has_many :attachments
 
+  enum language: I18n.available_locales
   enum role: [:admin, :employee]
   enum status: [:active, :blocked, :invited]
 

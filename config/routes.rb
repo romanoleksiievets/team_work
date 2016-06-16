@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  mount Ckeditor::Engine => '/ckeditor'
   scope "(:locale)", locale: /#{I18n.available_locales.join("|")}/ do
     devise_for :users, path_names: { sign_up: 'register' , sign_in: 'login' }, controllers: { registrations: 'registrations' }
 
@@ -43,7 +44,7 @@ Rails.application.routes.draw do
       end
 
       authenticated :user do
-        root 'novelties#index', as: :auth_root
+        root 'pages#show', url: "home", as: :auth_root
       end
     end
   end
