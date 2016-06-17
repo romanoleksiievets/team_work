@@ -31,6 +31,7 @@ gem 'globalize', '~> 5.0.1'
 gem 'globalize-accessors', '~> 0.2.1'
 
 gem 'ckeditor'
+gem 'sprockets-derailleur'
 
 group :development, :test do
   gem 'rspec-rails'
