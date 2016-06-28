@@ -33,6 +33,9 @@ gem 'globalize-accessors', '~> 0.2.1'
 gem 'ckeditor'
 gem 'sprockets-derailleur', '0.0.9'
 
+gem 'yomu'
+gem 'rubyXL'
+
 group :development, :test do
   gem 'rspec-rails'
   gem 'rspec-mocks'
@@ -50,6 +53,7 @@ end
 
 group :production do
   gem 'unicorn'
+  gem 'unicorn-worker-killer'
 end
 
 group :development do
