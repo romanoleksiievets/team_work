@@ -36,6 +36,8 @@ gem 'sprockets-derailleur', '0.0.9'
 gem 'yomu'
 gem 'rubyXL'
 
+gem "rest-client", "~> 1.8.0"
+
 group :development, :test do
   gem 'rspec-rails'
   gem 'rspec-mocks'
