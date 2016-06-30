@@ -17,5 +17,4 @@
 //= require turbolinks
 //= require bootstrap/alert
 //= require bootstrap/dropdown
-//= require ckeditor/init
 //= require_tree .
