@@ -2,6 +2,7 @@ class ProjectsController < ApplicationController
   before_action :organization_admin_only, except: [:index, :show]
   before_action :organization_member_only, only: [:index, :show]
   before_action :set_project, only: [:edit, :update, :destroy, :add, :del]
+  load_and_authorize_resource
 
   def index
     @projects = Project.all

@@ -17,5 +17,10 @@
 //= require turbolinks
 //= require bootstrap/alert
 //= require bootstrap/dropdown
+//= require bootstrap/tooltip
 //= require ckeditor/init
 //= require_tree .
+
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();
+});

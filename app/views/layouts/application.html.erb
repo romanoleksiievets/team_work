@@ -24,8 +24,14 @@
       <%= render partial: "shared/flash_messages", flash: flash %>
       <%= yield %>
     </div>
-    <footer class="col-xs-12">
-      <div class="center-block"> <%= current_organization.try(:name) || "Team Work" %>, <%= Time.now.to_datetime.year %> </div>
+    <footer class="footer navbar-fixed-bottom">
+          <div class="menu col-xs-4">
+            <%= mail_to "fedorniakl@gmail.com", t(".write_admin") %>
+          </div>
+
+          <div class="center-block text-muted col-xs-4">
+            <%= current_organization.try(:name) || "Team Work" %>, <%= Time.now.to_datetime.year %>
+          </div>
     </footer>
   </body>
 </html>

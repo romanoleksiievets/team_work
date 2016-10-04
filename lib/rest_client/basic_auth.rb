@@ -27,19 +27,19 @@ module RestClient
   private
     def rescue_errors
       yield
-    rescue => e
-      @response = e.try(:response)
-      headers = @response.try(:headers)
-      @errors <<
-        case e.message
-        when /getaddrinfo/
-          "Can't connect to #{@name} by url: #{@url}"
-        when "401 Unauthorized", "403 Forbidden"
-          "Can't connect to #{@name} with provided credentials."
-        else
-          "#{e.message} #{headers.try(:[], :x_seraph_loginreason)} #{headers.try(:[], :x_authentication_denied_reason)}"
-        end
-      false
+      rescue => e
+        @response = e.try(:response)
+        headers = @response.try(:headers)
+        @errors <<
+          case e.message
+          when /getaddrinfo/
+            "Can't connect to #{@name} by url: #{@url}"
+          when "401 Unauthorized", "403 Forbidden"
+            "Can't connect to #{@name} with provided credentials."
+          else
+            "#{e.message} #{headers.try(:[], :x_seraph_loginreason)} #{headers.try(:[], :x_authentication_denied_reason)} #{@response}"
+          end
+        false
     end
 
     def headers

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160628111714) do
+ActiveRecord::Schema.define(version: 20160911093018) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,20 @@ ActiveRecord::Schema.define(version: 20160628111714) do
     t.integer  "attachable_id"
     t.integer  "user_id"
     t.string   "attachable_type"
+  end
+
+  create_table "campaigns", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "message_type"
+    t.string   "title"
+    t.text     "text"
+    t.string   "target"
+    t.datetime "schedule"
+    t.boolean  "confirmed"
+    t.integer  "status"
+    t.integer  "message_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
   create_table "ckeditor_assets", force: :cascade do |t|
@@ -51,6 +65,16 @@ ActiveRecord::Schema.define(version: 20160628111714) do
   end
 
   add_index "comments", ["owner_id"], name: "index_comments_on_owner_id", using: :btree
+
+  create_table "identities", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "provider"
+    t.string   "uid"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "identities", ["user_id"], name: "index_identities_on_user_id", using: :btree
 
   create_table "integrations", force: :cascade do |t|
     t.integer  "organization_id"
@@ -135,6 +159,18 @@ ActiveRecord::Schema.define(version: 20160628111714) do
     t.integer "role",       default: 0
   end
 
+  create_table "user_profiles", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.integer  "org_role",         default: 0
+    t.string   "teaching_courses"
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+  end
+
+  add_index "user_profiles", ["user_id"], name: "index_user_profiles_on_user_id", using: :btree
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "",    null: false
     t.string   "encrypted_password",     default: "",    null: false
@@ -148,7 +184,6 @@ ActiveRecord::Schema.define(version: 20160628111714) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                             null: false
     t.datetime "updated_at",                             null: false
-    t.string   "name"
     t.string   "invitation_token"
     t.datetime "invitation_created_at"
     t.datetime "invitation_sent_at"
@@ -159,12 +194,20 @@ ActiveRecord::Schema.define(version: 20160628111714) do
     t.integer  "invitations_count",      default: 0
     t.boolean  "system_admin",           default: false
     t.integer  "language",               default: 0
+    t.string   "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string   "mobile"
+    t.text     "about"
   end
 
+  add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["invitation_token"], name: "index_users_on_invitation_token", unique: true, using: :btree
   add_index "users", ["invitations_count"], name: "index_users_on_invitations_count", using: :btree
   add_index "users", ["invited_by_id"], name: "index_users_on_invited_by_id", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "identities", "users"
+  add_foreign_key "user_profiles", "users"
 end

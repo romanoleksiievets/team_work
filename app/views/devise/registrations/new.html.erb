@@ -1,7 +1,18 @@
 <h2><%= t('.sign_up') %></h2>
-
+<% resource.try(:build_profile) %>
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
+
+  <%= f.fields_for :profile, autofocus: true do |p| %>
+    <div class="field">
+      <%= p.label :first_name %><br />
+      <%= p.text_field :first_name, autofocus: true %>
+    </div>
+    <div class="field">
+      <%= p.label :last_name %><br />
+      <%= p.text_field :last_name, autofocus: true %>
+    </div>
+  <% end %>
 
   <div class="field">
     <%= f.label :email %><br />
@@ -18,8 +29,15 @@
     <%= f.password_field :password_confirmation, autocomplete: "off" %>
   </div>
 
+  <div class="field">
+    <%= f.label :about %>
+    <%= link_to "","javascript:function()", title: t('.admin_will_decide_access_level'), class: "glyphicon glyphicon-question-sign", "data-toggle"=>"tooltip" %>
+    <br />
+    <%= f.text_area :about, placeholder: t(".about"), rows: 3 %>
+  </div>
+
   <div class="actions">
-    <%= f.submit t('.sign_up') %>
+    <%= f.submit t('.sign_up'), class: "btn btn-warning" %>
   </div>
 <% end %>
 

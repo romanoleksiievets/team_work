@@ -3,14 +3,9 @@
     %span.lang-xs.lang-lbl{lang: I18n.locale}
     %span.caret
   %ul.dropdown-menu
-    %li
-      = link_to locale: 'uk' do
-        %span.lang-xs.lang-lbl-full{lang:"uk"}
-    %li.divider{role: "separator"}
-    %li
-      = link_to locale: 'ru' do
-        %span.lang-xs.lang-lbl-full{lang:"ru"}
-    %li.divider{role: "separator"}
-    %li
-      = link_to locale: 'en' do
-        %span.lang-xs.lang-lbl-full{lang:"en"}
+    - I18n.available_locales.each_with_index do |lang, i|
+      - unless i.zero?
+        %li.divider{role: "separator"}
+      %li
+        = link_to locale: lang do
+          %span.lang-xs.lang-lbl-full{lang: lang}

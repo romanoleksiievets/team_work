@@ -1,0 +1,12 @@
+<div class="row">
+  <div class="col-md-8">
+    <%= bootstrap_form_for(@campaign) do |f| %>
+        <%= f.select :message_type, Campaign.types.keys.to_a %>
+        <%= f.text_field :title %>
+        <%= f.cktext_area :text, icon: "globe", rows: "12", ckeditor: {language: I18n.locale}, class: "ckeditor" %>
+        <%= f.text_field :target %>
+        <%= f.text_field :schedule %>
+        <%= f.submit %>
+    <% end %>
+  </div>
+</div>

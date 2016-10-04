@@ -1,8 +1,12 @@
 Rails.application.routes.draw do
   mount Ckeditor::Engine => '/ckeditor'
-  scope "(:locale)", locale: /#{I18n.available_locales.join("|")}/ do
-    devise_for :users, path_names: { sign_up: 'register' , sign_in: 'login' }, controllers: { registrations: 'registrations' }
+  # devise_for :users, only: :omniauth_callbacks, controllers: {omniauth_callbacks: 'users/omniauth_callbacks'}
 
+  scope "(:locale)", locale: /#{I18n.available_locales.join("|")}/ do
+    devise_for :users, path_names: { sign_up: 'register' , sign_in: 'login' },
+    controllers: { registrations: 'users/registrations' }, skip: :omniauth_callbacks
+    resources :campaigns
+    resources :reports
     resources :novelties,:path => "/news", only: [:index, :show]
     resources :pages, param: :url,only: [:index, :show]
     resources :projects do

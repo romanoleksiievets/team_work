@@ -1,7 +1,6 @@
 require 'pp'
-require 'yomu'
 require 'rubyXL'
-
+require 'yomu'
 
 def split_data(data)
   result = {}
@@ -14,16 +13,16 @@ def split_data(data)
 end
 
 def parse_file(file_to_parse)
-  data = File.read file_to_parse
   city = file_to_parse.split[1]
+  data = File.read file_to_parse
   text = Yomu.read :text, data
   records = []
-  text.split("\n\n\n\n\t\n\t").last.split("\n\n\t\n\t").each do |record|
-    if record.include?("0") || record.include?("@")
-      one_user_data = record.split("\n\t\n\t")
+  text.split("\n\n\n\n\t").last.split("\n\n\t").each do |record|
+    one_user_data = record.split("\n\t")
+    if one_user_data.count > 1 && one_user_data[1].size > 2
       one_user_data = one_user_data.first.split("\n\t") if one_user_data.count == 1
 
-      records << {user: one_user_data.first, city: city}.merge(split_data(one_user_data.last))
+      records << {user: one_user_data[1], city: city}.merge(split_data(one_user_data.last))
     end
   end
   records

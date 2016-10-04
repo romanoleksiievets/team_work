@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 ruby '2.2.2'
 
 gem 'rails', '4.2.5'
+gem 'sinatra', :require => false
 gem 'pg', '~> 0.18.4'
 gem 'sass-rails', '~> 5.0.4'
 
@@ -21,9 +22,13 @@ gem 'haml', '~> 4.0.7'
 gem 'slim'
 gem 'toastr_rails'
 
+gem 'dotenv-rails'
+
+gem 'cancancan'
 gem 'devise', '~> 3.5.2'
 gem 'devise_invitable', '~> 1.5.3'
 gem 'devise-i18n'
+gem 'http_accept_language'
 gem 'paperclip', '~> 4.3.2'
 gem "bower-rails", "~> 0.10.0"
 
@@ -33,10 +38,15 @@ gem 'globalize-accessors', '~> 0.2.1'
 gem 'ckeditor'
 gem 'sprockets-derailleur', '0.0.9'
 
-gem 'yomu'
 gem 'rubyXL'
 
 gem "rest-client", "~> 1.8.0"
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'omniauth-vkontakte'
+
+gem 'sidekiq'
+gem 'foreman'
 
 group :development, :test do
   gem 'rspec-rails'

@@ -20,11 +20,13 @@ module TeamWork
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
-    config.i18n.available_locales = [:uk, :ru, :en]
+    config.i18n.available_locales = [:uk, :en]
     config.i18n.default_locale = :en
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
+
+    config.active_job.queue_adapter = :sidekiq
 
     # Use lib/core_ext folder for core class extensions
     Dir[File.join(Rails.root, "lib", "core_ext", "*.rb")].each {|l| require l }

@@ -4,3 +4,27 @@ uk:
       sign_in: "Увійти"
       projects: "Проекти"
       news: "Новини"
+    intop_user_navigation:
+      edit_user: "Редактувати профіль"
+      sign_out: "Вийти"
+    application:
+      write_admin: "Написати адміністратору"
+  activerecord:
+    models:
+      campaign: "Розсилку"
+    attributes:
+      profile:
+        first_name: "Ім'я"
+        last_name: "Прізвищє"
+      campaign:
+         type: "Тип"
+         title: "Заголовок"
+         text: "Текст"
+         target: "Цільова аудиторія"
+         schedule: "Запланувати"
+         status: "Статус"
+         confirmed: "Дозволено"
+  campaigns:
+    new:
+      new_campaign: "Нова розсилка"
+
